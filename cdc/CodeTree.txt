@@ -1,0 +1,26 @@
+Arborescence du code
+
+controllers
+	home
+		-> index
+	search
+		-> index
+	card
+		-> list
+		-> view
+		-> update
+	extension
+		-> list
+		-> view
+	account
+	db_update
+models
+	inventory_model
+		- récupération de la liste des instances de cartes
+		- recherche de cartes à partir d'un nom (subset de récupération d'instances de cartes d'un utilisateur)
+		- récupération de la liste des extensions
+		- modification de la quantité d'une instance de carte donnée (pourra être une insertion dans le cas d'une instance de carte jamais encore possédée)
+	account_model
+		- modification du nom, du mot de passe, de l'email, de la langue
+	update_model
+		- récupération des nouvelles instances de cartes + les images : comment ? quelle source ? une API existe-elle ? voir MAgic WorkStation
