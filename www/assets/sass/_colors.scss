@@ -1,0 +1,21 @@
+// colors
+
+$primary-color : rgba(155,100,45,1);
+//$primary-color-darken: adjust-lightness($primary-color, -35); // #06e
+$primary-color-darken-extra: adjust-lightness($primary-color, -30); // #06e
+$primary-color-darken: adjust-lightness($primary-color, -10); // #06e
+$primary-color-lighten: adjust-lightness($primary-color, 45); // #EDD7C0
+$primary-color-lighten-extra: adjust-lightness($primary-color, 50); // #EDD7C0
+
+//$secondary-color: adjust-lightness(rgba(74,179,224,1), -50);
+$secondary-color: adjust-lightness(rgba(30,83,96,1),10);
+$secondary-color-darken-extra: adjust-lightness($secondary-color, -30);
+$secondary-color-darken: adjust-lightness($secondary-color, -10);
+$secondary-color-lighten: adjust-lightness($secondary-color, 45);
+$secondary-color-lighten-extra: adjust-lightness($secondary-color, 50);
+
+// ui
+$selected: $primary-color;
+$link-normal: $primary-color-darken;
+$link-hover: $primary-color-darken-extra;
+$link-visited: $secondary-color;
