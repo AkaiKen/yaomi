@@ -1,0 +1,34 @@
+
+images : faire un file_exists sur la version localisée - puis sur la version en anglais - avant d'afficher (fallback = image par défaut)
+==> plus tard, là je n'ai de toute façon que les images en anglais
+
+extensions : intro avec logotype de l'extension (localisée si possible), et les raretés
+grouper les extensions par blocs
+
+config : la langue de l'appli, et la langue des cartes
+
+langues : mettre les textes dans les fichiers de langue
+
+une image en fond double layer comme site Blizzard
+peut-être petites lampes vertes type années 30 sur les images
+
+ajouter title dans head
+
+problème avec police Sansation : ligature (sur ffi par exemple) automatique mais caractère manque (pas de pb avec Arial)
+testé sous Ubuntu 13.04 Firefox 22
+
+faire page de création d'utilisateur (plus tard : inscription)
+
+Collection : afficher le nombre de cartes possédées dans une extension donnée
+
+gestion des cartes recto/verso
+
+lazy loading pour les images ==> en cours
+
+pagination
+
+static pour les images, virer sessions (comment ?)
+
+page d'accueil : indiquer que la carte est en random
+
+indication pour savoir le compte connecté
