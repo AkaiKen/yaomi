@@ -38,9 +38,9 @@ class Inventory_model extends CI_Model {
 				->from('mdm_cards')
 				->join('mdm_cards_x_sets', 'mdm_cards.id = mdm_cards_x_sets.fk_card','left')
 				->join('mdm_sets', 'mdm_sets.id = mdm_cards_x_sets.fk_set', 'left')
-				->join('app_user_collection', 'mdm_cards_x_sets.id = app_user_collection.fk_card_instance', 'left')
-				->where($where)
-				->where('fk_user', $user);
+				->join('app_user_collection', 
+					'mdm_cards_x_sets.id = app_user_collection.fk_card_instance AND fk_user = ' . $user, 'left')
+				->where($where);
 
 			$this->db->order_by($order_by);
 
