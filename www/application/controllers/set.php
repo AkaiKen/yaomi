@@ -73,15 +73,15 @@ class Set extends MY_Controller {
 				}
 			}
 			$card_content['content'] = $this->layout->load_view('card_group',$data);
-			$cards_view = $this->layout->load_view('group', $card_content);
+			$cards_view = $this->layout->load_view('utils/group', $card_content);
 
 		}
 
 		if($intro['content'] !== ''){
-			$intro_view = $this->layout->load_view('group_foldable', $intro);
+			$intro_view = $this->layout->load_view('utils/group_foldable', $intro);
 		}
 		else {
-			$intro_view = $this->layout->load_view('group', $intro);
+			$intro_view = $this->layout->load_view('utils/group', $intro);
 		}
 
 		$data_output['content'] = $intro_view . $cards_view;

@@ -29,7 +29,7 @@
                 <div class="main-subtitle">Pour classer vos cartes <span class="mtg">Magic: the Gathering</span>, une loutre à la fois</div>
             </div>
             <?php if(!is_logged()) : ?>
-              <?php echo $login_form ; ?>
+              <?php if(isset($login_form)) echo $login_form ; ?>
             <?php else : ?>
             <div class="actions">
               <a class="logout-link" href="<?php echo site_url('logout') ; ?>">Déconnexion</a>

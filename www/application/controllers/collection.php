@@ -31,6 +31,8 @@ class Collection extends MY_Controller {
 
 		$cards_view = '';
 
+		var_dump($cards);
+
 		if($cards === FALSE) {
 			$intro['content'] = "Vous n'avez encore aucune carte."; 
 			// mettre lien pour remplir, ou bien une copie du moteur de recherche
@@ -65,8 +67,10 @@ class Collection extends MY_Controller {
 
 		}
 
+		var_dump($intro);
 
-		$intro_view = $this->layout->load_view('group_foldable', $intro);
+
+		$intro_view = $this->layout->load_view('utils/group_foldable', $intro);
 
 		$data_output = array();
 		$data_output['content'] = $intro_view . $cards_view;

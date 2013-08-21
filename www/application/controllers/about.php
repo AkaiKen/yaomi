@@ -18,7 +18,7 @@ class About extends MY_Controller {
         $this->load->library('form_validation');
         $data_output['login_form'] = $this->layout->load_view('login_form');
 
-    	$data_output['content'] = $this->layout->load_view('group', $about);
+    	$data_output['content'] = $this->layout->load_view('utils/group', $about);
 
 		$this->layout->output_view($data_output) ;
     }
