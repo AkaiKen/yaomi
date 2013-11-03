@@ -18,7 +18,8 @@ class Card extends MY_Controller {
 
 		if(trim($search_term) === '' ) {
 			if($this->input->get('term',TRUE)) {
-				redirect('card/search/'.urlencode($this->input->get('term', TRUE)));
+				$search_term = urldecode($this->input->get('term', TRUE));
+				//redirect('card/search/'.urlencode($this->input->get('term', TRUE)));
 			}
 			else {
 				redirect('/');
@@ -59,6 +60,7 @@ class Card extends MY_Controller {
 				foreach($cards as $card) {
 					$card_content['title'] = $card['name'];
 					$card_content['title'] .= (isset($card['name_fr']) && $card['name_fr'] !== '') ? ' ('.$card['name_fr'].')' : '' ;
+					$card_content['foldable'] = TRUE;
 					$card_content['open'] = $first;
 					$first = FALSE;
 					$card_content['classes'] = 'card-group';
@@ -74,7 +76,8 @@ class Card extends MY_Controller {
 						$data['content'] .= $this->layout->load_view('card',$card_instance);
 					}
 					$card_content['content'] = $this->layout->load_view('card_group',$data);
-					$cards_view .= $this->layout->load_view('group_foldable', $card_content);
+					//$cards_view .= $this->layout->load_view('utils/group_foldable', $card_content);
+					$cards_view .= $this->layout->load_view('utils/group', $card_content);
 				}
 
 				$intro['content'] = $this->layout->load_view('search_intro', $search_intro);
@@ -83,7 +86,7 @@ class Card extends MY_Controller {
 			}
 		}
 
-		$intro_view = $this->layout->load_view('group_foldable', $intro);
+		$intro_view = $this->layout->load_view('utils/group_foldable', $intro);
 
 		$data_output = array();
 		$data_output['content'] = $intro_view . $cards_view;

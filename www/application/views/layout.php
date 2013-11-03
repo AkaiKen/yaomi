@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Inventaire</title>
+  <title>Inventaire YAOMI</title>
   <base href="<?php echo base_url() ; ?>" />
   <meta name="description" content="">  
-  
-  <meta name="viewport" content="intial-scale=1.0">
+  <meta name="viewport" content="initial-scale=1.0">
   <link rel="stylesheet" href="assets/css/style.css">
 
   <script src="assets/js/vendors/modernizr-2.5.3.min.js"></script>
@@ -70,6 +69,7 @@
   <script src="assets/js/vendors/jquery-1.10.0.min.js"></script>
   <script src="assets/js/vendors/jquery.details.min.js"></script>
   <script src="assets/js/vendors/lazyLoad.min.js"></script>
+  <script src="assets/js/plugins.js"></script>
   <script src="assets/js/script.js"></script>
 
 </body>

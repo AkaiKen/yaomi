@@ -369,8 +369,8 @@ $config['salt'] = 'D,9-o4e4';
 // $config['symbols_location'] = $config['media_location'] . 'symbols/';
 
 $config['media_location'] = 'media/';
-$config['pictures_location'] = 'http://sanctuaire.lamecarlate.net/media/images/Magic/pics';
-$config['symbols_location'] = 'http://sanctuaire.lamecarlate.net/media/images/Magic/symbols';
+$config['pictures_location'] = 'http://sanctuaire.lamecarlate.net/media/images/Magic/pics/';
+$config['symbols_location'] = 'http://sanctuaire.lamecarlate.net/media/images/Magic/symbols/';
 
 //$config['media_location'] = 'http://sanctuaire.lamecarlate.net/media/images/Magic/pics';
 

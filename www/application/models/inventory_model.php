@@ -13,7 +13,22 @@ class Inventory_model extends CI_Model {
 			switch($type) {
 				case 'search':
 				default:
-					$where = "(mdm_cards.name LIKE '%". $term . "%' OR mdm_cards.name_fr LIKE '%" . $term  . "%')";
+
+					$terms = explode(' ', $term);
+					$term_count = sizeof($terms);
+					$term_string = "mdm_cards.name LIKE ";
+					$term_string_fr = "mdm_cards.name_fr LIKE ";
+					for($i = 0; $i <= ($term_count - 1); $i++) {
+						$term_string .= '"%' . $terms[$i] . '%"';
+						$term_string_fr .= '"%' . $terms[$i] . '%"';
+						if($i < ($term_count - 1)) {
+							$term_string .= ' AND mdm_cards.name LIKE ';
+							$term_string_fr .= ' AND mdm_cards.name_fr LIKE ';
+						}
+					}
+
+					//$where = "MATCH (mdm_cards.name, mdm_cards.name_fr) AGAINST ('" . $term_string . "' IN BOOLEAN MODE)";
+					$where = '(' . $term_string . ') OR (' . $term_string_fr . ')';
 					$group = 'card';
 					break;
 				case 'set':
@@ -40,7 +55,7 @@ class Inventory_model extends CI_Model {
 				->join('mdm_sets', 'mdm_sets.id = mdm_cards_x_sets.fk_set', 'left')
 				->join('app_user_collection', 
 					'mdm_cards_x_sets.id = app_user_collection.fk_card_instance AND fk_user = ' . $user, 'left')
-				->where($where);
+				->where($where, NULL, FALSE);
 
 			$this->db->order_by($order_by);
 
@@ -87,7 +102,6 @@ class Inventory_model extends CI_Model {
 					}
 				}
 				else {
-
 					return $result;
 				}
 
@@ -104,6 +118,7 @@ class Inventory_model extends CI_Model {
 	}
 
 	// ALIAS //
+	
 	function get_set_cards($user,$set_code) {
 		return $this->get_cards($user, 'set', $set_code);
 	}
@@ -117,7 +132,6 @@ class Inventory_model extends CI_Model {
 	}
 
 	// END ALIAS //
-
 
 	function update_qty($card_id, $total_qty, $deck_qty, $user_id) {
 

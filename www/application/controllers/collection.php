@@ -31,7 +31,7 @@ class Collection extends MY_Controller {
 
 		$cards_view = '';
 
-		var_dump($cards);
+//		var_dump($cards);
 
 		if($cards === FALSE) {
 			$intro['content'] = "Vous n'avez encore aucune carte."; 
@@ -59,18 +59,21 @@ class Collection extends MY_Controller {
 				$collection_intro['cards_owned'] += $cards_in_set; 
 
 				$card_content['content'] = $this->layout->load_view('card_group',$data);
-				$cards_view .= $this->layout->load_view('group_foldable', $card_content);
+				$card_content['foldable'] = TRUE;
+				$card_content['open'] = TRUE;
+				$cards_view .= $this->layout->load_view('utils/group', $card_content);
 			}
 
 			$intro['content'] = $this->layout->load_view('collection_intro', $collection_intro); 
+			$intro['foldable'] = TRUE;
 			// lister nombres de cartes, nombre de cartes différentes, combien il en manque...
 
 		}
 
-		var_dump($intro);
+		//var_dump($intro);
 
 
-		$intro_view = $this->layout->load_view('utils/group_foldable', $intro);
+		$intro_view = $this->layout->load_view('utils/group', $intro);
 
 		$data_output = array();
 		$data_output['content'] = $intro_view . $cards_view;

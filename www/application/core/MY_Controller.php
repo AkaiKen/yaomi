@@ -10,6 +10,11 @@ class MY_Controller extends CI_Controller {
         $page = $this->uri->rsegment(1);
         $sub_page = $this->uri->rsegment(2);
 
+        // load custom config file
+        //$this->load->config('yaomi_config');
+
+       // var_dump( $this->config->item('is_installed') );
+
         //is the application initialized?
         // $is_installed = $this->config->item('install');
         // if(!$is_installed && ($page !== 'install')) {

@@ -1697,3 +1697,188 @@ DEBUG - 2013-08-21 21:42:11 --> File loaded: application/views/home.php
 DEBUG - 2013-08-21 21:42:11 --> File loaded: application/views/layout.php
 DEBUG - 2013-08-21 21:42:11 --> Final output sent to browser
 DEBUG - 2013-08-21 21:42:11 --> Total execution time: 0.0159
+DEBUG - 2013-08-21 21:49:49 --> Config Class Initialized
+DEBUG - 2013-08-21 21:49:49 --> Hooks Class Initialized
+DEBUG - 2013-08-21 21:49:49 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 21:49:49 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 21:49:49 --> URI Class Initialized
+DEBUG - 2013-08-21 21:49:49 --> Router Class Initialized
+DEBUG - 2013-08-21 21:49:49 --> No URI present. Default controller set.
+DEBUG - 2013-08-21 21:49:49 --> Output Class Initialized
+DEBUG - 2013-08-21 21:49:49 --> Security Class Initialized
+DEBUG - 2013-08-21 21:49:49 --> Input Class Initialized
+DEBUG - 2013-08-21 21:49:49 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:49:49 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:49:49 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:49:49 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:49:49 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 21:49:49 --> Language Class Initialized
+DEBUG - 2013-08-21 21:49:49 --> Loader Class Initialized
+DEBUG - 2013-08-21 21:49:49 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 21:49:49 --> Helper loaded: language_helper
+DEBUG - 2013-08-21 21:49:49 --> Helper loaded: misc_helper
+DEBUG - 2013-08-21 21:49:49 --> Language file loaded: language/francais/generic_lang.php
+ERROR - 2013-08-21 21:49:49 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 58
+ERROR - 2013-08-21 21:49:49 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 59
+ERROR - 2013-08-21 21:49:49 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 60
+ERROR - 2013-08-21 21:49:49 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 61
+DEBUG - 2013-08-21 21:49:49 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 21:49:49 --> Session Class Initialized
+DEBUG - 2013-08-21 21:49:49 --> Helper loaded: string_helper
+DEBUG - 2013-08-21 21:49:49 --> Session routines successfully run
+DEBUG - 2013-08-21 21:49:49 --> Model Class Initialized
+DEBUG - 2013-08-21 21:49:49 --> Model Class Initialized
+DEBUG - 2013-08-21 21:49:49 --> Controller Class Initialized
+DEBUG - 2013-08-21 21:49:49 --> Model Class Initialized
+DEBUG - 2013-08-21 21:49:49 --> File loaded: application/views/search_form.php
+DEBUG - 2013-08-21 21:49:49 --> DB Transaction Failure
+ERROR - 2013-08-21 21:49:49 --> Query error: No database selected
+DEBUG - 2013-08-21 21:49:49 --> Language file loaded: language/francais/db_lang.php
+DEBUG - 2013-08-21 21:50:21 --> Config Class Initialized
+DEBUG - 2013-08-21 21:50:21 --> Hooks Class Initialized
+DEBUG - 2013-08-21 21:50:21 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 21:50:21 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 21:50:21 --> URI Class Initialized
+DEBUG - 2013-08-21 21:50:21 --> Router Class Initialized
+DEBUG - 2013-08-21 21:50:21 --> No URI present. Default controller set.
+DEBUG - 2013-08-21 21:50:21 --> Output Class Initialized
+DEBUG - 2013-08-21 21:50:21 --> Security Class Initialized
+DEBUG - 2013-08-21 21:50:21 --> Input Class Initialized
+DEBUG - 2013-08-21 21:50:21 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:50:21 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:50:21 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:50:21 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:50:21 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 21:50:21 --> Language Class Initialized
+DEBUG - 2013-08-21 21:50:21 --> Loader Class Initialized
+DEBUG - 2013-08-21 21:50:21 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 21:50:21 --> Helper loaded: language_helper
+DEBUG - 2013-08-21 21:50:21 --> Helper loaded: misc_helper
+DEBUG - 2013-08-21 21:50:21 --> Language file loaded: language/francais/generic_lang.php
+ERROR - 2013-08-21 21:50:21 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 58
+ERROR - 2013-08-21 21:50:21 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 59
+ERROR - 2013-08-21 21:50:21 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 60
+ERROR - 2013-08-21 21:50:21 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 61
+DEBUG - 2013-08-21 21:50:21 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 21:50:21 --> Session Class Initialized
+DEBUG - 2013-08-21 21:50:21 --> Helper loaded: string_helper
+DEBUG - 2013-08-21 21:50:21 --> Session routines successfully run
+DEBUG - 2013-08-21 21:50:21 --> Model Class Initialized
+DEBUG - 2013-08-21 21:50:21 --> Model Class Initialized
+DEBUG - 2013-08-21 21:50:21 --> Controller Class Initialized
+DEBUG - 2013-08-21 21:50:21 --> Model Class Initialized
+DEBUG - 2013-08-21 21:50:21 --> File loaded: application/views/search_form.php
+DEBUG - 2013-08-21 21:50:21 --> DB Transaction Failure
+ERROR - 2013-08-21 21:50:21 --> Query error: No database selected
+DEBUG - 2013-08-21 21:50:21 --> Language file loaded: language/francais/db_lang.php
+DEBUG - 2013-08-21 21:50:22 --> Config Class Initialized
+DEBUG - 2013-08-21 21:50:22 --> Hooks Class Initialized
+DEBUG - 2013-08-21 21:50:22 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 21:50:22 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 21:50:22 --> URI Class Initialized
+DEBUG - 2013-08-21 21:50:22 --> Router Class Initialized
+DEBUG - 2013-08-21 21:50:22 --> No URI present. Default controller set.
+DEBUG - 2013-08-21 21:50:22 --> Output Class Initialized
+DEBUG - 2013-08-21 21:50:22 --> Security Class Initialized
+DEBUG - 2013-08-21 21:50:22 --> Input Class Initialized
+DEBUG - 2013-08-21 21:50:22 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:50:22 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:50:22 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:50:22 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:50:22 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 21:50:22 --> Language Class Initialized
+DEBUG - 2013-08-21 21:50:22 --> Loader Class Initialized
+DEBUG - 2013-08-21 21:50:22 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 21:50:22 --> Helper loaded: language_helper
+DEBUG - 2013-08-21 21:50:22 --> Helper loaded: misc_helper
+DEBUG - 2013-08-21 21:50:22 --> Language file loaded: language/francais/generic_lang.php
+ERROR - 2013-08-21 21:50:22 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 58
+ERROR - 2013-08-21 21:50:22 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 59
+ERROR - 2013-08-21 21:50:22 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 60
+ERROR - 2013-08-21 21:50:22 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 61
+DEBUG - 2013-08-21 21:50:22 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 21:50:22 --> Session Class Initialized
+DEBUG - 2013-08-21 21:50:22 --> Helper loaded: string_helper
+DEBUG - 2013-08-21 21:50:22 --> Session routines successfully run
+DEBUG - 2013-08-21 21:50:22 --> Model Class Initialized
+DEBUG - 2013-08-21 21:50:22 --> Model Class Initialized
+DEBUG - 2013-08-21 21:50:22 --> Controller Class Initialized
+DEBUG - 2013-08-21 21:50:22 --> Model Class Initialized
+DEBUG - 2013-08-21 21:50:22 --> File loaded: application/views/search_form.php
+DEBUG - 2013-08-21 21:50:22 --> DB Transaction Failure
+ERROR - 2013-08-21 21:50:22 --> Query error: No database selected
+DEBUG - 2013-08-21 21:50:22 --> Language file loaded: language/francais/db_lang.php
+DEBUG - 2013-08-21 21:50:31 --> Config Class Initialized
+DEBUG - 2013-08-21 21:50:31 --> Hooks Class Initialized
+DEBUG - 2013-08-21 21:50:31 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 21:50:31 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 21:50:31 --> URI Class Initialized
+DEBUG - 2013-08-21 21:50:31 --> Router Class Initialized
+DEBUG - 2013-08-21 21:50:31 --> No URI present. Default controller set.
+DEBUG - 2013-08-21 21:50:31 --> Output Class Initialized
+DEBUG - 2013-08-21 21:50:31 --> Security Class Initialized
+DEBUG - 2013-08-21 21:50:31 --> Input Class Initialized
+DEBUG - 2013-08-21 21:50:31 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:50:31 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:50:31 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:50:31 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:50:31 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 21:50:31 --> Language Class Initialized
+DEBUG - 2013-08-21 21:50:31 --> Loader Class Initialized
+DEBUG - 2013-08-21 21:50:31 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 21:50:31 --> Helper loaded: language_helper
+DEBUG - 2013-08-21 21:50:31 --> Helper loaded: misc_helper
+DEBUG - 2013-08-21 21:50:31 --> Language file loaded: language/francais/generic_lang.php
+ERROR - 2013-08-21 21:50:31 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 58
+ERROR - 2013-08-21 21:50:31 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 59
+ERROR - 2013-08-21 21:50:31 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 60
+ERROR - 2013-08-21 21:50:31 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 61
+DEBUG - 2013-08-21 21:50:31 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 21:50:31 --> Session Class Initialized
+DEBUG - 2013-08-21 21:50:31 --> Helper loaded: string_helper
+DEBUG - 2013-08-21 21:50:31 --> Session routines successfully run
+DEBUG - 2013-08-21 21:50:31 --> Model Class Initialized
+DEBUG - 2013-08-21 21:50:31 --> Model Class Initialized
+DEBUG - 2013-08-21 21:50:31 --> Controller Class Initialized
+DEBUG - 2013-08-21 21:50:31 --> Model Class Initialized
+DEBUG - 2013-08-21 21:50:31 --> File loaded: application/views/search_form.php
+DEBUG - 2013-08-21 21:50:31 --> DB Transaction Failure
+ERROR - 2013-08-21 21:50:31 --> Query error: No database selected
+DEBUG - 2013-08-21 21:50:31 --> Language file loaded: language/francais/db_lang.php
+DEBUG - 2013-08-21 21:50:34 --> Config Class Initialized
+DEBUG - 2013-08-21 21:50:34 --> Hooks Class Initialized
+DEBUG - 2013-08-21 21:50:34 --> Utf8 Class Initialized
+DEBUG - 2013-08-21 21:50:34 --> UTF-8 Support Enabled
+DEBUG - 2013-08-21 21:50:34 --> URI Class Initialized
+DEBUG - 2013-08-21 21:50:34 --> Router Class Initialized
+DEBUG - 2013-08-21 21:50:34 --> No URI present. Default controller set.
+DEBUG - 2013-08-21 21:50:34 --> Output Class Initialized
+DEBUG - 2013-08-21 21:50:34 --> Security Class Initialized
+DEBUG - 2013-08-21 21:50:34 --> Input Class Initialized
+DEBUG - 2013-08-21 21:50:34 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:50:34 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:50:34 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:50:34 --> XSS Filtering completed
+DEBUG - 2013-08-21 21:50:34 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-08-21 21:50:34 --> Language Class Initialized
+DEBUG - 2013-08-21 21:50:34 --> Loader Class Initialized
+DEBUG - 2013-08-21 21:50:34 --> Helper loaded: url_helper
+DEBUG - 2013-08-21 21:50:34 --> Helper loaded: language_helper
+DEBUG - 2013-08-21 21:50:34 --> Helper loaded: misc_helper
+DEBUG - 2013-08-21 21:50:34 --> Language file loaded: language/francais/generic_lang.php
+ERROR - 2013-08-21 21:50:34 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 58
+ERROR - 2013-08-21 21:50:34 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 59
+ERROR - 2013-08-21 21:50:34 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 60
+ERROR - 2013-08-21 21:50:34 --> Severity: Notice  --> Undefined variable: yaomi_config /home/lara/Informatique/Développement/www/yaomi/www/application/config/database.php 61
+DEBUG - 2013-08-21 21:50:34 --> Database Driver Class Initialized
+DEBUG - 2013-08-21 21:50:34 --> Session Class Initialized
+DEBUG - 2013-08-21 21:50:34 --> Helper loaded: string_helper
+DEBUG - 2013-08-21 21:50:34 --> Session routines successfully run
+DEBUG - 2013-08-21 21:50:34 --> Model Class Initialized
+DEBUG - 2013-08-21 21:50:34 --> Model Class Initialized
+DEBUG - 2013-08-21 21:50:34 --> Controller Class Initialized
+DEBUG - 2013-08-21 21:50:34 --> Model Class Initialized
+DEBUG - 2013-08-21 21:50:34 --> File loaded: application/views/search_form.php
+DEBUG - 2013-08-21 21:50:34 --> DB Transaction Failure
+ERROR - 2013-08-21 21:50:34 --> Query error: No database selected
+DEBUG - 2013-08-21 21:50:34 --> Language file loaded: language/francais/db_lang.php

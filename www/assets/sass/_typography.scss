@@ -50,7 +50,7 @@
     font-family: 'GoudyOldStyle';
     src: url('../fonts/GoudyOldStyle.eot');
     src: url('../fonts/GoudyOldStyle.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/GoudyOldStyle.woff') format('woff'),
+        //url('../fonts/GoudyOldStyle.woff') format('woff'),
         url('../fonts/GoudyOldStyle.ttf') format('truetype'),
         url('../fonts/GoudyOldStyle.svg#sansationitalic') format('svg');
     font-weight: normal;
@@ -80,6 +80,7 @@ body {
 @for $i from 1 through 6 {
 	h#{$i}, .h#{$i}-like { 
 		
+        
 	}
 }
 

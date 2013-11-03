@@ -15,7 +15,7 @@ peut-être petites lampes vertes type années 30 sur les images
 ajouter title dans head
 
 problème avec police Sansation : ligature (sur ffi par exemple) automatique mais caractère manque (pas de pb avec Arial)
-testé sous Ubuntu 13.04 Firefox 22
+testé sous Ubuntu 13.04 Firefox 24, Windows XP Firefox 24
 
 faire page de création d'utilisateur (plus tard : inscription)
 
@@ -33,10 +33,23 @@ page d'accueil : indiquer que la carte est en random
 
 indication pour savoir le compte connecté
 
-recherche : séparer chaque recherche en segments pour chercher chaque terme indépendamment de leur position dans la phrase entrée. Ex : "wayfarer krosan" => actuellement aucun résultat, l'idée est de rechercher "wayfarer" et "krosan" pour pouvoir trouver "Krosan Wayferer"
+PRIO 1 : recherche : séparer chaque recherche en segments pour chercher chaque terme indépendamment de leur position dans la phrase entrée. Ex : "wayfarer krosan" => actuellement aucun résultat, l'idée est de rechercher "wayfarer" et "krosan" pour pouvoir trouver "Krosan Wayferer"
+
+recherche autrement : avec 
 
 si on fait "enrouler tout", on ne peut plus dérouler carte par carte
 
-déconnexions intempestives, investiguer !
+déconnexions intempestives, investiguer ! lié à la recherche, à la redirection faite dans la recherche ? (t'façon, changer ça, c'est moche)
 
-accéléler l'arrivée des notifications
+accélérer l'arrivée des notifications
+
+tris supplémentaires :
+- dans collection : par couleur, par extension (défaut), mettre des boutons (des checkboxes) ; à l'intérieur
+- dans une extension : par numéro, par couleur (puis par numéro)
+- dans la recherche : par nom, par couleur
+
+recherche possible par quantité ? très plus tard (need outil de recherche avancée)
+
+filtres : rareté, couleur
+
+tester type de stockage du nombre, 03 devrait être 3

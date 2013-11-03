@@ -80,7 +80,7 @@ $autoload['helper'] = array('url', 'language', 'misc');
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('yaomi_config');
 
 
 /*

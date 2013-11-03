@@ -44,6 +44,7 @@ class Update extends MY_Controller {
 	function _insert_new($upload_data) {
 
 		$this->load->model('card_model');
+		$this->load->model('set_model');
 		$this->load->model('update_model');
 
 		$full_path = $upload_data['full_path'];
@@ -66,29 +67,51 @@ class Update extends MY_Controller {
 					//echo 'xpld : ' ;
 					//var_dump($xpld);
 
+					// $new_card['name'] = trim($xpld[0]);
+					// $new_card['set_name'] = $xpld[1];
+					// $new_card['set_code'] = $xpld[2];
+					// $new_card['set_id'] = $this->set_model->get_set($new_card['set_code'], 'code', 'id') ; // calculated
+					// $new_card['internal_number'] = $xpld[3]; // not used here
+					// $new_card['card_type'] = $xpld[4];
+					// $new_card['power'] = $xpld[5];
+					// $new_card['toughness'] = $xpld[6];
+					// $new_card['loyalty'] = $xpld[7];
+					// $new_card['mana_cost'] = $xpld[8];
+					// $new_card['converted_mana_cost'] = $xpld[9];
+					// $new_card['artist'] = $xpld[10];
+					// $new_card['flavor_text'] = $xpld[11];
+					// $new_card['color'] = $xpld[12];
+					// $new_card['generated_mana'] = $xpld[13];
+					// $new_card['card_number'] = $xpld[14];
+					// $new_card['rarity'] = $xpld[15];
+					// $new_card['rulings'] = $xpld[16];
+					// $new_card['variation'] = $xpld[17];
+					// $new_card['ability'] = $xpld[18];
+					// $new_card['watermark'] = $xpld[19];
+					// $new_card['number_int'] = $xpld[20]; // not used here
+					// $new_card['name_fr'] = $xpld[23];
+
 					$new_card['name'] = trim($xpld[0]);
 					$new_card['set_name'] = $xpld[1];
 					$new_card['set_code'] = $xpld[2];
 					$new_card['set_id'] = $this->set_model->get_set($new_card['set_code'], 'code', 'id') ; // calculated
-					$new_card['internal_number'] = $xpld[3]; // not used here
-					$new_card['card_type'] = $xpld[4];
-					$new_card['power'] = $xpld[5];
-					$new_card['toughness'] = $xpld[6];
-					$new_card['loyalty'] = $xpld[7];
-					$new_card['mana_cost'] = $xpld[8];
-					$new_card['converted_mana_cost'] = $xpld[9];
-					$new_card['artist'] = $xpld[10];
-					$new_card['flavor_text'] = $xpld[11];
-					$new_card['color'] = $xpld[12];
-					$new_card['generated_mana'] = $xpld[13];
-					$new_card['card_number'] = $xpld[14];
-					$new_card['rarity'] = $xpld[15];
-					$new_card['rulings'] = $xpld[16];
-					$new_card['variation'] = $xpld[17];
-					$new_card['ability'] = $xpld[18];
-					$new_card['watermark'] = $xpld[19];
-					$new_card['number_int'] = $xpld[20]; // not used here
-					$new_card['name_fr'] = $xpld[23];
+					$new_card['card_type'] = $xpld[3];
+					$new_card['power'] = $xpld[4];
+					$new_card['toughness'] = $xpld[5];
+					$new_card['loyalty'] = $xpld[6];
+					$new_card['mana_cost'] = $xpld[7];
+					$new_card['converted_mana_cost'] = $xpld[8];
+					$new_card['artist'] = $xpld[9];
+					$new_card['flavor_text'] = $xpld[10];
+					$new_card['color'] = $xpld[11];
+					$new_card['generated_mana'] = $xpld[12];
+					$new_card['card_number'] = $xpld[13];
+					$new_card['rarity'] = $xpld[14];
+					$new_card['rulings'] = $xpld[15];
+					$new_card['variation'] = $xpld[16];
+					$new_card['ability'] = $xpld[17];
+					$new_card['watermark'] = $xpld[18];
+					$new_card['name_fr'] = $xpld[19];
 
 					// 1) la carte proprement dite
 
@@ -133,6 +156,10 @@ class Update extends MY_Controller {
 					}
 
 					// 2) la carte dans l'extension donnée
+
+					if($new_card['set_id'] === FALSE) {
+						return FALSE;
+					}
 
 					$sets = $this->card_model->get_card_sets($card_id);
 					if($sets !== FALSE) {

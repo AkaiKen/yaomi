@@ -12,14 +12,12 @@ javascripts_dir = "assets/js"
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed
-output_style = (environment == :production) ? :compressed : :expanded
-
-# To disable debugging comments that display the original location of your selectors. Uncomment:
-# line_comments = false
-
-# Pass options to sass. For development, we turn on the FireSass-compatible
-# debug_info if the firesass config variable above is true.
-sass_options = (environment == :development && firesass == true) ? {:debug_info => true} : {}
+if environment == :production
+  output_style = :compressed
+else
+  output_style = :expanded
+  sass_options = { :debug_info => true }
+end
 
 # Désactiver l'ajout du cache buster sur les images appelées via la fonction image-url().
 asset_cache_buster :none

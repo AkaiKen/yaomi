@@ -273,6 +273,8 @@ hr {
 
 	a {
 		color: $link-normal;
+		text-decoration: underline;
+		cursor: pointer;
 
 		&:hover, &:focus {
 			color: $link-hover;
@@ -296,7 +298,7 @@ hr {
 		);
 		background-size: 100% 103%; background-position:center;
 		overflow:hidden;
-
+		cursor: pointer;
 	}
 
 	// hide the little arrow of "details" elements
@@ -319,13 +321,15 @@ hr {
 		text-align: center;
 	}
 
-	&.foldable .block-title:focus::after {
-		border-radius: 50%;
-		background: $primary-color;
-		box-shadow: -1px -1px 1px $primary-color-darken-extra inset;
+	&.foldable .block-title:focus::after,
+	&.foldable .block-title:hover::after {
+		//border-radius: 50px;
+		color: $primary-color-lighten;
+		//box-shadow: -1px -1px 1px $primary-color-darken-extra inset;
 	}
 
-	&.foldable .block-title[aria-expanded="true"]::after {
+	&.foldable .block-title[aria-expanded="true"]::after,
+	&.foldable.open .block-title::after {
 		content: '\f002';
 	}
 

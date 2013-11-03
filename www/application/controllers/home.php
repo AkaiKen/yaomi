@@ -12,14 +12,14 @@ class Home extends MY_Controller {
 		$user = $this->session->userdata('user_id');
 
 		$data_home = array();
-		$data_home['search_form'] = $this->load->view('search_form', '', TRUE);
+		$data_home['search_form'] = $this->load->view('search_form', array('id' => 'home'), TRUE);
 
 		$data_home['random_card'] = "";
 
 		$random_card = $this->inventory->get_random_card($user);
 		if($random_card){
-			$card = array_shift($random_card); // we want the (unique) card
-			$card_instance = array_shift($card['instances']); // we want the (unique too) instance
+			$card = current($random_card); // we want the (unique) card
+			$card_instance = current($card['instances']); // we want the (unique too) instance
 			$card_instance->display_set_name = TRUE;
 			$card_instance->display_name = TRUE;
 			$card_instance->display_qty = FALSE;

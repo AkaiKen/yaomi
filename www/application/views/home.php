@@ -19,9 +19,9 @@
 	<div class="block-content">
 		<ul>
 			<li><a href="<?php echo site_url('collection')?>">Ma collection</a></li>
-			<li><span>Cartes dans un deck</span></li>
-			<li><span>Cartes à l'échange</span></li>
-			<li><span>Cartes recherchées</span></li>
+			<li><a title="Bientôt">Cartes dans un deck</a></li>
+			<li><a title="Bientôt">Cartes à l'échange</a></li>
+			<li><a title="Bientôt">Cartes recherchées</a></li>
 		</ul>
 		
 	</div>

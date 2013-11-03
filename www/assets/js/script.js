@@ -1,9 +1,11 @@
-(function(){
+;(function(){
 	"use strict";
 
 	jQuery(document).ready(function(){
 		
 		jQuery('details').details();
+
+		jQuery('.foldable').foldable();
 
 		var callback = '';
 		if(jQuery('.page-collection').length > 0) {
@@ -208,10 +210,13 @@
 	function listen_toggle_groups() {
 
 		jQuery('#fold-card-groups').on('click', function(){
+			//console.log(jQuery('.card-group'));
+			//jQuery('.card-group').foldable.toggle('close');
 			toggle_fold_groups('close');
 		});
 
 		jQuery('#unfold-card-groups').on('click', function(){
+			//jQuery('.card-group').foldable.toggle('open');
 			toggle_fold_groups('open');
 		});
 	}
