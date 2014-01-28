@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database', 'session', 'layout');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'language', 'misc');
+$autoload['helper'] = array('url', 'language', 'misc', 'inventory');
 
 
 /*
@@ -96,7 +96,7 @@ $autoload['config'] = array('yaomi_config');
 |
 */
 
-$autoload['language'] = array('generic');
+$autoload['language'] = array('generic', 'specific');
 
 
 /*

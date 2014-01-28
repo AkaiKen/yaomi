@@ -6,7 +6,7 @@ class Set_model extends CI_Model {
 
 		$this->db->select($field_out)
 			->from('mdm_sets')
-			->where('mdm_sets.' . $field_in ,$set_identifier);
+			->where('mdm_sets.' . $field_in , $set_identifier);
 
 		$exec = $this->db->get();
 

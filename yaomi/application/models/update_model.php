@@ -29,11 +29,11 @@ class Update_model extends CI_Model {
 
 		echo 'on update cards';
 		//var_dump($card_data);
-
+		
 		$this->db->where('id', $card_id);
-		$data_card = array(
-			'name' => $card_data['name'],
-			'name_fr' => $card_data['name_fr'],
+		$data = array(
+			//'name' => $card_data['name'],
+			//'name_fr' => $card_data['name_fr'],
 			'card_type' => $card_data['card_type'],
 			'power' => $card_data['power'],
 			'toughness' => $card_data['toughness'],
@@ -45,10 +45,17 @@ class Update_model extends CI_Model {
 			'generated_mana' => $card_data['generated_mana'],
 			'rulings' => $card_data['rulings']
 		);
-		$this->db->set($data_card);
+
+		if($card_data['name_fr'] !== NULL && $card_data['name_fr'] !== '') {
+			$data['name_fr'] = $card_data['name_fr'];
+		}
+		if($card_data['name'] !== NULL && $card_data['name'] !== '') {
+			$data['name'] = $card_data['name'];
+		}
+
+		$this->db->set($data);
 		$this->db->update('mdm_cards');
 
-		
 	}
 
 	function insert_card_set($card_id, $set_id, $card_data) {

@@ -6,6 +6,9 @@ class Set extends MY_Controller {
         parent::__construct();
         $this->load->model('inventory_model','inventory');
         $this->load->model('set_model','set');
+
+        $this->load->helper('inventory');
+
     }
 
     public function _remap($code) {
@@ -94,19 +97,23 @@ class Set extends MY_Controller {
 
 		$set_cards_list = $this->inventory->get_set_cards($user, $set_code);
 
+
+
 		$cards_view = '';
 		if($set_cards_list === FALSE) {
 			$intro['content'] = 'Pas de résultats';
 		}
 		else {
 			$intro['content'] = ''; // prez rapide de l'extension
+			$intro['content'] .= $this->layout->load_view('specific/rarities_filter');
+			$intro['content'] .= $this->layout->load_view('specific/colors_filter');
 			$cards_view = '';
 			$data = '';
-			foreach($set_cards_list as $set) {	
+			foreach($set_cards_list as $set_cards) {	
 				$data['content'] = '' ;
 				$card_content['classes'] = 'card-group';
 				$card_content['title'] = 'Cartes';
-				foreach($set['instances'] as $card) {
+				foreach($set_cards['instances'] as $card) {
 					$card->display_name = TRUE;
 					$card->landscape = ((int)$card->is_landscape === 1);
 					$data['content'] .= $this->layout->load_view('card', $card);

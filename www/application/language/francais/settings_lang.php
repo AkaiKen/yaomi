@@ -8,3 +8,7 @@ $lang['settings.create_user.password_confirmation'] = 'Confirmation du mot de pa
 $lang['settings.create_user.name'] = 'Nom affiché';
 $lang['settings.create_user.is_admin'] = 'Administrateur ?';
 $lang['settings.create_user.label_button'] = 'Envoyer';
+
+$lang['settings.validate_users.title'] = 'Utilisateurs à valider';
+
+$lang['settings.translate_cards.required'] = 'Champ requis';

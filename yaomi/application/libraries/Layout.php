@@ -35,7 +35,9 @@ class Layout
 				return $CI->load->view($view_name, $data, TRUE);
 			}
 			else {
-				return '';
+				return (isset($CI->config->config['debug_view']) && $CI->config->config['debug_view'] === TRUE) 
+				? "The view '" . $view_name . "' is missing."  
+				: '';
 			}
 		}
 
@@ -44,7 +46,9 @@ class Layout
 			return $CI->load->view($view_name, $data, TRUE);
 		}
 		else {
-			return '';
+			return (isset($CI->config->config['debug_view']) && $CI->config->config['debug_view'] === TRUE)
+			? "The view '" . $view_name . "' is missing."  
+			: '';
 		}
 
 		// OLD

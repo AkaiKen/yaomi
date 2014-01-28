@@ -11,6 +11,7 @@
 			</span>
 			<button type="submit" aria-label="<?php echo lang('login.label_button') ; ?>" 
 				class="login-submit"><span><?php echo lang('login.label_button') ; ?></span></button>
+			<a href="<?php echo site_url('register') ; ?>" class="button-alt-style register-link">S'inscrire</a>
 		</form>
 	</div>
 	<?php if(validation_errors() !== '' || $this->session->userdata('login_errors')) : ?>

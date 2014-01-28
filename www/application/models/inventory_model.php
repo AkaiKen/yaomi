@@ -2,32 +2,51 @@
 
 class Inventory_model extends CI_Model {
 
-	function get_cards($user, $type = 'search', $term = '') {
+	function get_cards($user, $type = 'search', $term = '', $filter_type = '', $filter_term = '') {
 
 		try {
 
 			$group = '';
 			$where = '';
-			$limit = '';
+
+			$where_filter = '';
+			if($filter_type !== '') {
+				$where_filter = get_filter_string($filter_type, $filter_term);
+			}
+
+			$limit = 0;
 			$order_by = 'mdm_cards.name ASC';
+
 			switch($type) {
 				case 'search':
 				default:
-
 					$terms = explode(' ', $term);
 					$term_count = sizeof($terms);
-					$term_string = "mdm_cards.name LIKE ";
-					$term_string_fr = "mdm_cards.name_fr LIKE ";
+					$term_string = '';
+					$term_string_fr = '' ;
 					for($i = 0; $i <= ($term_count - 1); $i++) {
-						$term_string .= '"%' . $terms[$i] . '%"';
-						$term_string_fr .= '"%' . $terms[$i] . '%"';
+
+						if(strpos($terms[$i], 'ae') !== FALSE){
+							$term_alt = str_ireplace('ae', 'æ', $terms[$i]);
+							$term_string .= '(mdm_cards.name LIKE "%' . $terms[$i] . '%" OR mdm_cards.name LIKE "%' . $term_alt . '%")';
+							$term_string_fr .= '(mdm_cards.name_fr LIKE "%' . $terms[$i] . '%" OR mdm_cards.name_fr LIKE "%' . $term_alt . '%")';
+						}
+						elseif(strpos($terms[$i], 'oe') !== FALSE){
+							$term_alt = str_ireplace('ae', 'œ', $terms[$i]);
+							$term_string .= '(mdm_cards.name LIKE "%' . $terms[$i] . '%" OR mdm_cards.name LIKE "%' . $term_alt . '%")';
+							$term_string_fr .= '(mdm_cards.name_fr LIKE "%' . $terms[$i] . '%" OR mdm_cards.name_fr LIKE "%' . $term_alt . '%")';
+						}
+						else {
+							$term_string .= '(mdm_cards.name LIKE "%' . $terms[$i] . '%" )';
+							$term_string_fr .= '(mdm_cards.name_fr LIKE "%' . $terms[$i] . '%" )';
+						}
+						
 						if($i < ($term_count - 1)) {
-							$term_string .= ' AND mdm_cards.name LIKE ';
-							$term_string_fr .= ' AND mdm_cards.name_fr LIKE ';
+							$term_string .= ' AND ';
+							$term_string_fr .= ' AND ';
 						}
 					}
 
-					//$where = "MATCH (mdm_cards.name, mdm_cards.name_fr) AGAINST ('" . $term_string . "' IN BOOLEAN MODE)";
 					$where = '(' . $term_string . ') OR (' . $term_string_fr . ')';
 					$group = 'card';
 					break;
@@ -49,7 +68,7 @@ class Inventory_model extends CI_Model {
 			
 			$this->db->select('mdm_cards_x_sets.id, mdm_cards.id AS card_id, mdm_cards.name, mdm_cards.name_fr, 
 				mdm_sets.name AS set_name, mdm_sets.name_fr AS set_name_fr, mdm_sets.code AS set_code, 
-				mdm_cards_x_sets.card_number, mdm_cards.is_landscape, qty, deck_qty')
+				mdm_cards_x_sets.card_number, mdm_cards.is_landscape, qty, deck_qty, rarity, color')
 				->from('mdm_cards')
 				->join('mdm_cards_x_sets', 'mdm_cards.id = mdm_cards_x_sets.fk_card','left')
 				->join('mdm_sets', 'mdm_sets.id = mdm_cards_x_sets.fk_set', 'left')
@@ -59,11 +78,13 @@ class Inventory_model extends CI_Model {
 
 			$this->db->order_by($order_by);
 
-			if($limit !== '') {
+			if($limit > 0) {
 				$this->db->limit($limit);
 			}
 
 			$query_cards = $this->db->get();
+
+			//echo $this->db->last_query();
 
 			if($query_cards->num_rows() > 0){
 
@@ -119,7 +140,7 @@ class Inventory_model extends CI_Model {
 
 	// ALIAS //
 	
-	function get_set_cards($user,$set_code) {
+	function get_set_cards($user, $set_code) {
 		return $this->get_cards($user, 'set', $set_code);
 	}
 

@@ -3,14 +3,6 @@
 class Settings_model extends CI_Model {
 
 	function create_user($login, $password, $name = '', $email = '', $app_lang = '', $cards_lang = '', $is_admin = FALSE, $is_active = FALSE) {
-
-		// first: is this user already existing? if yes, we stop here and 
-		// $this->db->select('id')->from('auth_users')->where('login', $login);
-		// $exec = $this->db->get();
-
-		// if($exec->num_rows() > 0) {
-		// 	return FALSE;
-		// }
 		
 		// encrypted password = sha1(pwd.salt)
     	// the salt is in config
@@ -42,6 +34,30 @@ class Settings_model extends CI_Model {
 
 
 
+	}
+
+	function list_non_translated_cards() {
+
+		$this->db->select('id, name')
+			->from("mdm_cards")
+			->where('name_fr', '')
+			->order_by('name');
+
+		$exec = $this->db->get();
+
+		if($exec->num_rows() > 0) {
+			return $exec->result();
+		}
+		return FALSE;
+
+
+	}
+
+	function set_card_as_non_translated($id_card) {
+		//$data = array("name_fr", NULL);
+		$this->db->set('name_fr', NULL);
+		$this->db->where('id', $id_card);
+		$this->db->update('mdm_cards');
 	}
 
 }

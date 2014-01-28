@@ -53,7 +53,7 @@ class Card_model extends CI_Model {
 
 		$exec = $this->db->get();
 
-		if($exec->num_rows() > 0 && $exec->row()->variation !== NULL) {
+		if($exec->num_rows() > 0 && $exec->row()->variation !== NULL && $exec->row()->variation != 0) {
 			return $exec->row()->variation;
 		}
 		return FALSE;

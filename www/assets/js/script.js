@@ -3,6 +3,7 @@
 
 	jQuery(document).ready(function(){
 		
+		// LEGACY
 		jQuery('details').details();
 
 		jQuery('.foldable').foldable();
@@ -19,13 +20,23 @@
 		listen_toggle_groups();
 
 		lazyLoad.init({
-			//onPostpone : function(){ setOpacity(this,0); },
+			//onPostpone : function(){ /*setOpacity(this,0);*/ },
 			//onRecall : function(){ new fade(this,1); }
 		});
 
 		listen_loader();
 		
+		//polyfill_number();
+		
+		// if(jQuery('.filter-rarities').length) {
+		// 	var input = jQuery('.filter-rarities').find('input');
+		// 	listen_filter_rarities(input);
+		// }
 
+		if(jQuery('.filter-colors').length) {
+			var input = jQuery('.filter-colors').find('input');
+			listen_filter_colors(input);
+		}
 
 	});
 
@@ -43,11 +54,36 @@
 	}
 
 	function polyfill_number() {
-	    if (!Modernizr.inputtypes.number) {
-	        $('input[type=number]').spinner();
-	    }
-	}
+	    
+        $('input[type=number]').each(function(){
 
+        });
+
+        var domMouseScrollHandler = function (e) {
+            var t;
+            t = e.data.p, e.preventDefault(), 0 > e.originalEvent.detail ? t.increment() : t.decrement()
+        }
+        var mouseWheelHandler = function (e) {
+            var t;
+            t = e.data.p, e.preventDefault(), e.originalEvent.wheelDelta > 0 ? t.increment() : t.decrement()
+        }
+        var increment = function () {
+       		var e, t;
+            this.elem.is(":disabled") 
+            	|| (t = this.getParams(), e = n.preciseAdd(t.val, t.step), 
+            		null != t.max && parseFloat(e) > parseFloat(t.max) 
+            		&& (e = t.max), e = this.stepNormalize(e), this.elem.val(e).change())
+        }
+
+        var decrement = function () {
+            var e, t;
+            this.elem.is(":disabled") 
+            	|| (t = this.getParams(), e = n.preciseSubtract(t.val, t.step), 
+            		null != t.min && parseFloat(e) < parseFloat(t.min) 
+            		&& (e = t.min), e = this.stepNormalize(e), this.elem.val(e).change())
+        }
+	    
+	}
 
 	function listen_update_cards(callback) {
 
@@ -64,7 +100,7 @@
 		var input = cards.find('input.qty-total, input.qty-deck');
 
 		// when the Enter key is fired while the focus being on an input...
-		input.on('keyup',function(e) {
+		input.off('keyup.update').on('keyup.update',function(e) {
 			if(e.keyCode == 13) {
 				// ... this input loses focus...
 				jQuery(this).blur();
@@ -72,12 +108,31 @@
 		});
 
 		// ...and you know what happens to little inputs that lose focus?
-		input.on('blur', function(event) {
-			stop_event(event);
+		input.off('blur.update').on('blur.update', function(event) {
+			stop_event(event);			
+			var t = jQuery(this);
+			__fire_update(t);
 
+		});
+
+		// we fire the event also on spin buttons (from polyfill)
+		// @TODO: create my own polyfill, I need MOAR control
+		var spin_buttons = input.closest('.qty-number').find('.number-spin-btn');
+		spin_buttons.off('click.update').on('click.update', function(event){
+			stop_event(event);
+			var t = jQuery(this).closest('.qty-number').find('input');
+			__fire_update(t);
+		});
+
+		// we don't want the form to submit itself 
+		// (it's still a form because I want yaomi to *work* without js)
+		form.on('submit', function(event){
+			stop_event(event);
+		});
+
+		function __fire_update(t) {
 			// only if current value is different from old one
 			// (we don't want to fire update when unnecessary)
-			var t = jQuery(this);
 			var card_parent = t.closest('.card');
 			if(t.hasClass('qty-total')){
 				if(t.val() !== card_parent.data('old_val[total]')){
@@ -89,13 +144,7 @@
 					update_cards(form, card_parent, callback);
 				}
 			}
-		});
-
-		// we don't want the form to submit itself 
-		// (it's still a form because I want yaomi to *work* without js)
-		form.on('submit', function(event){
-			stop_event(event);
-		});
+		}
 	}
 
 	function update_cards(form, card, callback) {
@@ -224,52 +273,20 @@
 
 	function listen_toggle_groups() {
 
-		jQuery('#fold-card-groups').on('click', function(){
-			//console.log(jQuery('.card-group'));
-			//jQuery('.card-group').foldable.toggle('close');
-			//toggle_fold_groups('close');
+		jQuery('#fold-card-groups').off('click.fold').on('click.fold', function(){
+			jQuery('.card-group').foldable('close');
 		});
 
-		jQuery('#unfold-card-groups').on('click', function(){
-			//jQuery('.card-group').foldable('open');
-			//toggle_fold_groups('open');
+		jQuery('#unfold-card-groups').off('click.unfold').on('click.unfold', function(){
+			jQuery('.card-group').foldable('open');
 		});
 	}
-
-	function toggle_fold_groups(action) {
-
-		var groups = jQuery('.card-group');
-
-		if(action === 'close') {			
-			jQuery(groups).each(function() {
-				var t = jQuery(this);
-				t.prop('open', false);
-				t.removeClass('open');
-				t.find('summary').attr('aria-expanded', false);
-				t.find(':not(summary)').hide();
-				t.triggerHandler('close.details');
-			});	
-		}
-		else if(action === 'open') {
-			jQuery(groups).each(function() {
-				var t = jQuery(this);
-				t.prop('open', true);
-				t.addClass('open');
-				t.find('summary').attr('aria-expanded', true);
-				t.find(':not(summary)').show();
-				t.triggerHandler('open.details')
-			});
-		}
-		else {
-			// nothing
-		}
-
-	}
-
 
 	function listen_loader() {
 
-		jQuery("a").on('click', function(){
+		hide_loader();
+
+		jQuery("a[href]").on('click', function(){
 			display_loader();
 		});
 
@@ -285,7 +302,79 @@
 
 	function hide_loader() {
 		jQuery('#loader').fadeOut(200);
+	}
+
+	// FILTERS \\
+	function listen_filter_rarities(input) {
+		filter_cards(input, 'rarity');
+		jQuery(input).off('change.filter_rarities').on('change.filter_rarities', function(event){
+			stop_event(event);
+			filter_cards(input, 'rarity');
+		});
+	}
+
+	function listen_filter_colors(input) {
+		filter_cards(input, 'color');
+		jQuery(input).off('change.filter_colors').on('change.filter_colors', function(event){
+			stop_event(event);
+			filter_cards(input, 'color');
+		});
 	}	
+
+	function filter_cards(input, filter, special_values) {
+		var cards = jQuery('.card');
+
+		jQuery(input).each(function(){
+			var $t = jQuery(this),
+				$filtered_cards = jQuery(".card").filter_by_data(filter, $t.val() );
+
+			if($t.is(':checked')) {
+				$filtered_cards.removeClass('hidden');
+			}
+			else {
+				$filtered_cards.addClass('hidden');
+			}
+
+		});
+
+		cleansing_filters();
+	}
+
+	// function filter_rarities(input) {
+	// 	var cards = jQuery('.card');
+
+	// 	jQuery(input).each(function(){
+	// 		var $t = jQuery(this),
+	// 			$filtered_cards = jQuery(".card").filter_by_data("rarity", $t.val() );
+
+	// 		if($t.is(':checked')) {
+	// 			$filtered_cards.removeClass('hidden');
+	// 		}
+	// 		else {
+	// 			$filtered_cards.addClass('hidden');
+	// 		}
+
+	// 	});
+
+	// 	cleansing_filters();
+	// }
+
+	function cleansing_filters() {
+
+		jQuery('.card-group').each(function(){
+			var $t = jQuery(this),
+				$cards = $t.find('.card');
+
+			if($cards.not('.hidden').length) {
+				$t.show();
+			}
+			else {
+				$t.hide();
+			}
+
+		});
+
+	}
 
 
 })()

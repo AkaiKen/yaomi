@@ -7,15 +7,27 @@ class MY_Controller extends CI_Controller {
 
         ini_set('display_errors', 1);
 
-        // is the user logged?
-        $is_logged = $this->session->userdata('is_logged');
-
         $page = $this->uri->rsegment(1);
         $sub_page = $this->uri->rsegment(2);
 
+        // load custom config file
+        //$this->load->config('yaomi_config');
+
+       // var_dump( $this->config->item('is_installed') );
+
+        //is the application initialized?
+        // $is_installed = $this->config->item('install');
+        // if(!$is_installed && ($page !== 'install')) {
+        //     redirect('install');
+        //     exit();
+        // }
+
+        // is the user logged?
+        $is_logged = $this->session->userdata('is_logged');
+
         // is the user on a public page?
         // if "no" and "no", we redirect them on the login page
-        $public_pages = array('login', 'about', 'credits');
+        $public_pages = array('login', 'about', 'credits', 'install', 'register');
  		if(!$is_logged && !in_array($page, $public_pages)) {
 			redirect('login');
             exit;
@@ -41,4 +53,20 @@ class MY_Controller extends CI_Controller {
             )
         );
     }
+
+    function _display_error($message = "") {
+        $data['title'] = 'Oups';
+        $data['content'] = $this->layout->load_view('utils/error', array('content' => $message));
+        $data_output['content'] = $this->layout->load_view('utils/group', $data);
+        $this->layout->output_view($data_output);
+    }
+
+    function _display_success($message = "") {
+        $data['title'] = 'Woké';
+        $data['content'] = $this->layout->load_view('utils/success', array('content' => $message));
+        $data_output['content'] = $this->layout->load_view('utils/group', $data);
+        $this->layout->output_view($data_output);
+    }
+
+
 }

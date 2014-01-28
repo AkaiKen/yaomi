@@ -61,20 +61,21 @@ input:invalid, textarea:invalid { background-color: #f0dddd; }
 
 table { border-collapse: collapse; border-spacing: 0; }
 td { vertical-align: top; }
-/**
-* Avoid top margins on first content element
-*/
+
+// Avoid top margins on first content element
+// and bottom margins on last content element
 p, ul, ol dl,
 blockquote, pre,
 h1, h2, h3, h4, h5, h6 {
 	&:first-child {
 		margin-top: 0;
 	}
+	&:last-child {
+		margin-bottom: 0;
+	}
 }
 
-/**
-* Avoid margins on nested elements
-*/
+// Avoid margins on nested elements
 li {
 	p, ul, ol {
 		margin-top: 0;

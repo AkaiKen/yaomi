@@ -45,7 +45,8 @@ class CI_Config {
 	 *
 	 * @var array
 	 */
-	var $_config_paths = array(APPPATH);
+	var $_config_paths = array(APPPATH, '');
+
 
 	/**
 	 * Constructor
@@ -108,6 +109,8 @@ class CI_Config {
 			foreach ($check_locations as $location)
 			{
 				$file_path = $path.'config/'.$location.'.php';
+				
+//				var_dump($file_path);
 
 				if (in_array($file_path, $this->is_loaded, TRUE))
 				{

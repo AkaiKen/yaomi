@@ -20,7 +20,7 @@
         <div class="inner-wrapper">
             <div class="title">
                 <div class="logo">
-                  <!-- image -->
+                  <img src="assets/img/yaomi.png" height="85" width="90" alt="" />
                 </div>
                 <h1 class="main-title">
                   <a href="<?php echo site_url() ; ?>">Yet An Otter <span class="mtg">Magic</span> Inventory</a>
@@ -31,7 +31,7 @@
               <?php if(isset($login_form)) echo $login_form ; ?>
             <?php else : ?>
             <div class="actions">
-              <a class="settings-link" title="Bientôt"><?php echo $this->session->userdata('user_name'); ?></a> |
+              <a class="settings-link" href="<?php echo site_url('settings') ; ?>"><?php echo $this->session->userdata('user_name'); ?></a> |
               <a class="logout-link" href="<?php echo site_url('logout') ; ?>">Déconnexion</a>
             </div>
             <nav class="main-nav">
@@ -65,6 +65,8 @@
         <a href="<?php echo site_url('about') ; ?>">À propos</a>
       </div>
     </footer>
+  </div>
+  <div id="loader" class="loader" aria-hidden="true">
   </div>
 
   <script src="assets/js/vendors/jquery-1.10.0.min.js"></script>

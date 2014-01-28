@@ -19,6 +19,9 @@ class Inventory_model extends CI_Model {
 					$term_string = "mdm_cards.name LIKE ";
 					$term_string_fr = "mdm_cards.name_fr LIKE ";
 					for($i = 0; $i <= ($term_count - 1); $i++) {
+
+						
+
 						$term_string .= '"%' . $terms[$i] . '%"';
 						$term_string_fr .= '"%' . $terms[$i] . '%"';
 						if($i < ($term_count - 1)) {

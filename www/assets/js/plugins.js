@@ -7,66 +7,127 @@
 	(function( $ ) {
 
 		var self;
-		$.fn.foldable = function( options ) {
 
-			//var options = args;
+		var defaults = {
+			title_class: 'block-title',
+			content_class: 'block-content'
+		}
 
-			var defaults = {
-				title_class: 'block-title',
-				content_class: 'block-content'
-			}
+		var settings;
 
-			var settings = $.extend( {}, defaults, options );
+		var methods = {
+	        init : function(options) {
+	        	settings = $.extend( {}, defaults, options );
 
-			self = this; //store original jQuery object
-			return self.each(function() {
+				self = this; //store original jQuery object
+				return self.each(function() {
 
-				var block = $(this);
-				var title = block.find('.' + settings.title_class);
-				var content = block.find('.' + settings.content_class);
+					var block = $(this);
 
-				if(!$(this).hasClass('open')){
-					content.hide();
-				}
+					block.addClass('foldable-triggered');
 
-				title.on('click', function(){
-					content.toggle();
-					block.toggleClass('open');
+					var title = block.find('.' + settings.title_class);
+					var content = block.find('.' + settings.content_class);
+
+					if(!block.hasClass('open')){
+						methods.close();
+					}
+
+					title.on('click', function(){
+						if(!block.hasClass('open')) {
+							methods.open(this);
+						}
+						else {
+							methods.close(this);
+						}
+					});
+
 				});
+	        },
+	        open : function( arg ) { 
 
-			});
+	        	arg = (typeof(arg) === 'undefined') ? this : arg;
+	        	methods.toggle('open', arg);
 
-			function close() {
-				content.hide();
-				block.removeClass('open');
-				console.log('close');
-			}
+	        },
+	        close : function( arg ) {
 
-			function open() {
-				content.show();
-				block.addClass('open');
-				console.log('open');
+	        	arg = (typeof(arg) === 'undefined') ? this : arg;
+	        	methods.toggle('close', arg);
 
-			}
+	        },
+	        toggle : function (action, arg) {
 
-		};
+	        	var block = jQuery(arg).closest('.foldable-triggered');
 
-		$.fn.foldable.toggle = function( action ) {
+	        	if(action === 'close') {
+	        		block.removeClass('open').addClass('closed');
+	        		block.find('.' + settings.content_class).hide();
+	        	}
+	        	else {
+	        		block.removeClass('closed').addClass('open');
+	        		block.find('.' + settings.content_class).show();
+	        	}
 
-			// console.log('hop');
-			console.log(self);
-			console.log(this);
+	        }
+	    };
 
+		$.fn.foldable = function( args ) {
 
-			// return this.each(function() {
-			// 	console.log(this);
-			// 	// if(action === 'close') {
-
-			// 	// }
-			// });
+			if ( methods[args] ) {
+	            return methods[ args ].apply( this, Array.prototype.slice.call( arguments, 1 ));
+	        } else if ( typeof args === 'object' || ! args ) {
+	            // Default to "init"
+	            return methods.init.apply( this, arguments );
+	        } else {
+	            $.error( 'Method ' +  args + ' does not exist on jQuery.foldable' );
+	        } 
+			
 		};
 	}( jQuery ));
+	// FOLDABLE - END
+	
 
+	// FILTER BY DATA
+	(function($) {
+ 
+	/* by Elijah Manor with collaboration from Doug Neiner
+	* Filter results by html5 data attributes either at
+	* design or at runtime
+	*
+	* Usages:
+	* $( "p" ).filterByData( "mytype" );
+	* $( "p" ).filterByData( "mytype, "mydata" );
+	*/
+	$.fn.filter_by_data = function( type, value, strict ) {
 
+		return this.filter( function() {
 
+			if(strict === null) {
+				strict = true;
+			}
+
+			var $this = $( this );
+
+			if(value !== null) {
+				if(strict){
+					return ($this.data( type ) === value);
+				}
+				else {
+					return ($this.data( type ).indexOf(value) !== -1) ;
+				}
+			}
+			else {
+				return ($this.data( type ) !== null );
+			}
+
+			// return value !== null ?
+			// 	$this.data( type ).indexOf(value) !== -1 :
+			// 	$this.data( type ) !== null;
+		});
+	};
+
+	})(jQuery); 
+	// FILTER BY DATA - END 
+	
 })()

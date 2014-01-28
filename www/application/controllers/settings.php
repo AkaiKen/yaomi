@@ -24,6 +24,46 @@ class Settings extends MY_Controller {
 		$this->layout->output_view($data_output);
     }
 
+    public function translate_cards() {
+
+    	$cards_to_translate = $this->settings_m->list_non_translated_cards();
+
+    	// if(empty($cards_to_translate)) {
+    	// 	$translate = array();
+	    // 	$translate['title'] = 'Traduire';
+	    // 	$translate['content'] = $this->layout->load_view('settings/no_cards_to_translate', array('cards' => $cards_to_translate));
+	    // 	$data_output['content'] = $this->layout->load_view('utils/group', $translate);
+	    // 	$this->layout->output_view($data_output);
+    	// }
+
+    	$this->load->helper(array('form')); 
+		$this->load->library('form_validation');
+		
+		if ($this->input->post() === FALSE) {
+	    	$translate = array();
+	    	$translate['title'] = 'Traduire';
+	    	$translate['content'] = $this->layout->load_view('settings/translate_cards', array('cards' => $cards_to_translate));
+	    	$data_output['content'] = $this->layout->load_view('utils/group', $translate);
+	    	$this->layout->output_view($data_output);
+	    }
+	    else {
+	    	//var_dump($this->input->post());
+	    	$post = $this->input->post();
+	    	foreach($post['card'] as $k => $v) {
+	    		if($v !== '') {
+	    			//var_dump($v);
+	    			// translate
+	    			$this->settings_m->translate_card($k, $v);
+	    		}
+	    	}
+	    	foreach($post['card-nt'] as $k => $v) {
+	    		$this->settings_m->set_card_as_non_translated($k);
+	    		// say $k is not translated and set it to NULL
+	    	}
+	    	redirect('settings/translate_cards');
+	    }
+    }
+
     public function create_user() {
 
         $this->load->helper(array('form')); 
@@ -67,5 +107,14 @@ class Settings extends MY_Controller {
 
 		}  	
 
+    }
+
+    public function validate_users() {
+
+    	$validate_users = array();
+    	$validate_users['title'] = lang('settings.validate_users.title');
+    	$validate_users['content'] = 'woohoo';
+    	$data_output['content'] = $this->layout->load_view('utils/group', $validate_users);
+		$this->layout->output_view($data_output);
     }
 }

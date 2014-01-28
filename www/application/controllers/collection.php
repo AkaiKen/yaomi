@@ -7,6 +7,8 @@ class Collection extends MY_Controller {
         $this->load->model('inventory_model','inventory');
         $this->load->model('set_model','set');
         $this->load->model('card_model','card');
+
+        $this->load->helper('inventory');
     }
 
 	public function index() {
@@ -62,7 +64,9 @@ class Collection extends MY_Controller {
 				$cards_view .= $this->layout->load_view('utils/group', $card_content);
 			}
 
-			$intro['content'] = $this->layout->load_view('collection_intro', $collection_intro); 
+		//	$intro['content'] = $this->layout->load_view('collection_intro', $collection_intro); 
+			$intro['content'] = $this->layout->load_view('utils/fold_buttons'); 
+			$intro['content'] .= $this->layout->load_view('specific/rarities_filter');
 			$intro['foldable'] = TRUE;
 			// lister nombres de cartes, nombre de cartes différentes, combien il en manque...
 

@@ -1,8 +1,3 @@
-<?php 
-// is the card oversized?
-// is the card landscape-shaped?
-
-?>
 <section class="item card sub-block <?php if(isset($landscape) && $landscape === TRUE) { echo 'double' ; } ?>" >
 	<?php if(isset($display_name) && $display_name === TRUE) : ?>
 	<div class="card-name">
@@ -18,8 +13,10 @@
 		</span>
 	</div>
 	<?php endif ; ?>
-	<?php if(isset($display_set_name) && $display_set_name === TRUE) : ?>
+	<?php if(isset($display_name) && $display_name === TRUE && isset($display_set_name) && $display_set_name === TRUE) : ?>
 	<hr />
+	<?php endif ; ?>
+	<?php if(isset($display_set_name) && $display_set_name === TRUE) : ?>
 	<div class="set-name">
 		<span class="original-name name" lang="en" 
 			title="<?php echo (isset($set_name) && $set_name !== '') ? htmlentities($set_name) : '' ;?>">
@@ -40,7 +37,6 @@
 	</div>
 	<?php endif ; ?>
 	<?php 
-		
 		$sizes = (!isset($landscape) || $landscape === FALSE) ? 'height="285" width="199"' : 'height="199" width="285"';
 	?>
 	<img class="item-media card-picture" src="<?php echo $image ; ?>" alt="" <?php echo $sizes ; ?> />

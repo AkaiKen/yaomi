@@ -12,3 +12,5 @@ $lang['register.label_button'] = 'Envoyer';
 $lang['register.ask_validation.subject'] = 'Demande de validation de compte sur yaomi';
 
 
+
+

@@ -30,7 +30,7 @@ hr {
 	background: none;
 	color: transparent;
 	height: 0;
-	margin: .2em 0;
+	margin: 15px 0;
 }
 
 .mtg {
@@ -118,6 +118,11 @@ hr {
 	display : inline-block;
 }
 
+.main-header .logo {
+	float: left;
+	margin-right: 10px;
+}
+
 .main-nav {
 
 	@include column(12);
@@ -198,10 +203,64 @@ hr {
 	}
 }
 
+/* ==LOADER */
+
+.loader {
+	display: none;
+}
+
+.loader:before {
+
+	content: '\f004';
+	font-family: icons;
+	font-size: 4em;
+
+	position: fixed;
+	left: 50%;
+	margin-left: -30px;
+	top: 50%;
+	margin-top: -30px;
+	z-index: 10;
+	text-shadow: 0 0 5px $primary-color-darken-extra;
+
+	-webkit-transform-origin: center center;
+	-moz-transform-origin: center center;
+	transform-origin: center center;
+
+	-webkit-animation: rotate_loader 2.5s linear infinite ;  
+	-moz-animation: rotate_loader 2.5s  linear infinite ;  
+	-ms-animation: rotate_loader 2.5s  linear infinite ;  
+	-o-animation: rotate_loader 2.5s linear infinite ;  
+	animation: rotate_loader 2.5s linear infinite ; 
+	animation-fill-mode:both;
+}
+
+@-webkit-keyframes rotate_loader { 
+	from { -webkit-transform: rotateZ(0deg) ; } 
+	to { -webkit-transform: rotateZ(360deg) ; } 
+}
+@-moz-keyframes rotate_loader { 
+	from { -moz-transform: rotateZ(0deg) ; } 
+	to { -moz-transform: rotateZ(360deg) ; } 
+}
+@-o-keyframes rotate_loader { 
+	from { -o-transform: rotateZ(0deg) ; } 
+	to { -o-transform: rotateZ(360deg) ; } 
+}
+@keyframes rotate_loader { 
+	from { transform: rotateZ(0deg) ; } 
+	to { transform: rotateZ(360deg) ; } 
+}
+
+
 /* ==LOGIN */
 
 .login-wrapper {
 	position: relative;
+
+	.register-link {
+		//float: right;
+	}
 
 	.login-form-errors {
 		border: 1px solid $primary-color-lighten;
@@ -220,7 +279,6 @@ hr {
 		width: 400px;
 	}
 }
-
 
 .login-form {
 
@@ -468,6 +526,12 @@ hr {
 		text-align: center;
 		padding: 10px;
 		height: 80px;
+
+		@include column(4);
+
+		@media only screen and ( max-width: $bp-medium) {
+			@include column(12);
+		}
 	}
 
 	.set-link {
@@ -547,4 +611,113 @@ hr {
 
 
 	
+}
+
+.notification-wrapper {
+	position: fixed;
+	bottom:10px;
+	right:10px;
+	max-width: 500px;
+}
+
+.notification {
+
+	@extend .item;
+
+	background: $normal-lighten;
+	border: 1px solid $normal;
+	color: #222;	
+	min-width: 300px;
+	min-height: 64px;
+	border-radius: 4px;
+	box-shadow: 0 0 5px rgba(0,0,0,.7);
+	margin-top: 20px;
+
+	&:before {
+		color: $success;
+		font-size: 2em;
+		content: '\f005';
+		font-family: icons;
+		display: inline-block;
+		vertical-align: middle;
+		padding-right: 6px;
+	}
+
+	&.error {
+		background: $error-lighten;
+		border: 1px solid $error;
+
+		&:before {
+			content: '\f011';
+			color: $error;
+		}
+	}
+}
+
+.button {
+  padding: 1px 6px;
+  margin: 6px;
+
+  text-decoration: none;
+  
+  border-radius: 5px / 10px;
+  background: $primary-color-lighten;
+
+  box-shadow: 
+    1px 2px 1px rgba($primary-color-darken,.7) inset, 
+    1px -2px 1px rgba($primary-color-lighten-extra,.5) inset,
+    0 0 0 1px $primary-color-darken-extra,
+    0 0 0 3px $primary-color, 
+    0 0 0 4px $primary-color-darken-extra;
+
+  border: none;
+
+  &:hover,
+  &:focus {
+    outline: none;
+	box-shadow: 
+		1px 2px 1px rgba($primary-color-darken,.7) inset, 
+		1px -2px 1px rgba($primary-color-lighten-extra,.5) inset,
+		0 0 0 1px $primary-color-darken-extra,
+		0 0 0 3px $primary-color-darken, 
+		0 0 0 4px $primary-color-darken-extra;
+  	}
+}
+
+.button-alt-color {
+	text-decoration: none;
+	background: $secondary-color-lighten;
+	box-shadow: 
+		1px 2px 1px rgba($secondary-color-darken,.7) inset, 
+		1px -2px 1px rgba($secondary-color-lighten-extra,.5) inset,
+		0 0 0 1px $secondary-color-darken-extra,
+		0 0 0 3px $secondary-color, 
+		0 0 0 4px $secondary-color-darken-extra;
+}
+
+.button-alt-style {
+  border-radius: 5px / 10px;
+  text-decoration: none;
+  background: $primary-color-lighten;
+  box-shadow: 
+    1px -2px 1px rgba($primary-color-darken,.7) inset, 
+    1px 2px 1px rgba($primary-color-lighten-extra,.5) inset, 
+    0 0 0 1px $primary-color-darken-extra,
+    0 0 0 3px $primary-color, 
+    0 0 0 4px $primary-color-darken-extra;
+  border: none;
+  padding: 1px 6px;
+  margin-left: 6px;
+  margin-right: 6px;
+
+  &:hover,
+  &:focus {
+    outline: none;
+  box-shadow: 
+    1px -2px 1px rgba($primary-color-darken,.7) inset, 
+    1px 2px 1px rgba($primary-color-lighten-extra,.5) inset, 
+    0 0 0 1px $primary-color-darken-extra,
+    0 0 0 3px $primary-color-darken, 
+    0 0 0 4px $primary-color-darken-extra;
+  }
 }

@@ -1,6 +1,7 @@
 .ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; *line-height: 0; }
 .ir br { display: none; }
 .hidden { display: none !important; visibility: hidden; }
+.visible { visibility: visible;}
 
 /** Hidden yet accessible content */
 .visuallyhidden {

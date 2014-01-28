@@ -26,70 +26,6 @@ textarea {
 	resize: vertical; 
 }
 
-// .button {
-//   padding: 1px 6px;
-//   margin: 6px;
-  
-//   border-radius: 5px / 10px;
-//   background: $primary-color-lighten;
-
-//   box-shadow: 
-//     1px 2px 1px rgba($primary-color-darken,.7) inset, 
-//     1px -2px 1px rgba($primary-color-lighten-extra,.5) inset,
-//     0 0 0 1px $primary-color-darken-extra,
-//     0 0 0 3px $primary-color, 
-//     0 0 0 4px $primary-color-darken-extra;
-
-//   border: none;
-
-//   &:hover,
-//   &:focus {
-//     outline: none;
-//   box-shadow: 
-//     1px 2px 1px rgba($primary-color-darken,.7) inset, 
-//     1px -2px 1px rgba($primary-color-lighten-extra,.5) inset,
-//     0 0 0 1px $primary-color-darken-extra,
-//     0 0 0 3px $primary-color-darken, 
-//     0 0 0 4px $primary-color-darken-extra;
-//   }
-// }
-
-// .button-alt-color {
-//   background: $secondary-color-lighten;
-//   box-shadow: 
-//     1px 2px 1px rgba($secondary-color-darken,.7) inset, 
-//     1px -2px 1px rgba($secondary-color-lighten-extra,.5) inset,
-//     0 0 0 1px $secondary-color-darken-extra,
-//     0 0 0 3px $secondary-color, 
-//     0 0 0 4px $secondary-color-darken-extra;
-// }
-
-// .button-alt-style {
-//   border-radius: 5px / 10px;
-//   background: $primary-color-lighten;
-//   box-shadow: 
-//     1px -2px 1px rgba($primary-color-darken,.7) inset, 
-//     1px 2px 1px rgba($primary-color-lighten-extra,.5) inset, 
-//     0 0 0 1px $primary-color-darken-extra,
-//     0 0 0 3px $primary-color, 
-//     0 0 0 4px $primary-color-darken-extra;
-//   border: none;
-//   padding: 1px 6px;
-//   margin-left: 6px;
-//   margin-right: 6px;
-
-//   &:hover,
-//   &:focus {
-//     outline: none;
-//   box-shadow: 
-//     1px -2px 1px rgba($primary-color-darken,.7) inset, 
-//     1px 2px 1px rgba($primary-color-lighten-extra,.5) inset, 
-//     0 0 0 1px $primary-color-darken-extra,
-//     0 0 0 3px $primary-color-darken, 
-//     0 0 0 4px $primary-color-darken-extra;
-//   }
-// }
-
 input[type="text"],
 input[type="number"],
 input[type="email"],
@@ -98,76 +34,16 @@ input[type="password"],
 input[type="search"] {
 	width: 200px;
   @extend .button;
-	// padding: 1px 6px;
-	// margin: 6px;
-	
-	// border-radius: 5px / 10px;
-	// background: $primary-color-lighten;
-
-	// box-shadow:	
-	// 	1px 2px 1px rgba($primary-color-darken,.7) inset, 
-	// 	1px -2px 1px rgba($primary-color-lighten-extra,.5) inset,
-	// 	0 0 0 1px $primary-color-darken-extra,
-	// 	0 0 0 3px $primary-color, 
-	// 	0 0 0 4px $primary-color-darken-extra;
-
-	// border: none;
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus,
-input[type="email"]:focus,
-input[type="tel"]:focus,
-input[type="password"]:focus,
-input[type="search"]:focus {
-	// outline: none;
-	// box-shadow:	
-	// 	1px 2px 1px rgba($primary-color-darken,.7) inset, 
-	// 	1px -2px 1px rgba($primary-color-lighten-extra,.5) inset,
-	// 	0 0 0 1px $primary-color-darken-extra,
-	// 	0 0 0 3px $primary-color-darken, 
-	// 	0 0 0 4px $primary-color-darken-extra;
-}
 
 .input-alt {
   @extend .button-alt-color;
-	// background: $secondary-color-lighten;
-	// box-shadow:	
-	// 	1px 2px 1px rgba($secondary-color-darken,.7) inset, 
-	// 	1px -2px 1px rgba($secondary-color-lighten-extra,.5) inset,
-	// 	0 0 0 1px $secondary-color-darken-extra,
-	// 	0 0 0 3px $secondary-color, 
-	// 	0 0 0 4px $secondary-color-darken-extra;
 }
 
 input[type="submit"],
 button {
   @extend .button-alt-style;
-	// border-radius: 5px / 10px;
-	// background: $primary-color-lighten;
-	// box-shadow:	
-	// 	1px -2px 1px rgba($primary-color-darken,.7) inset, 
-	// 	1px 2px 1px rgba($primary-color-lighten-extra,.5) inset, 
-	// 	0 0 0 1px $primary-color-darken-extra,
-	// 	0 0 0 3px $primary-color, 
-	// 	0 0 0 4px $primary-color-darken-extra;
-	// border: none;
-	// padding: 1px 6px;
-	// margin-left: 6px;
-	// margin-right: 6px;
-}
-
-input[type="submit"]:hover,
-input[type="submit"]:focus,
-button:hover,
-button:focus {
-	// outline: none;
-	// box-shadow:	
-	// 	1px -2px 1px rgba($primary-color-darken,.7) inset, 
-	// 	1px 2px 1px rgba($primary-color-lighten-extra,.5) inset, 
-	// 	0 0 0 1px $primary-color-darken-extra,
-	// 	0 0 0 3px $primary-color-darken, 
-	// 	0 0 0 4px $primary-color-darken-extra;
 }
 
 input[type="number"] {
@@ -188,7 +64,7 @@ input[type="number"] {
 
     label {
       display: table-cell;
-      padding-right: 5px;
+      padding-right: 15px;
       text-align: right;
     }
 

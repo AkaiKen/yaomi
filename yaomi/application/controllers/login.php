@@ -5,8 +5,6 @@ class Login extends MY_Controller {
 	public function __construct(){
         parent::__construct();
         $this->load->model('login_model', 'login_m');
-
-        ini_set('display_errors', 1);
     }
 
     public function index() {

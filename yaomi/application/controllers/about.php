@@ -12,7 +12,7 @@ class About extends MY_Controller {
 
         $about = array();
         $about['title'] = "À propos";
-        $about['content'] = $this->layout->load_view('about');
+        $about['content'] = $this->layout->load_view('about/about-fr');
 
         $this->load->helper(array('form')); 
         $this->load->library('form_validation');

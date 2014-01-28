@@ -6,8 +6,6 @@ class Card extends MY_Controller {
         parent::__construct();
         $this->load->model('inventory_model','inventory');
         $this->load->model('card_model','card');
-
-        ini_set('display_errors', 1);
     }
 
 	public function index() {

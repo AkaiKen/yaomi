@@ -30,7 +30,7 @@ hr {
 	background: none;
 	color: transparent;
 	height: 0;
-	margin: .2em 0;
+	margin: 10px 0;
 }
 
 .mtg {
@@ -555,16 +555,6 @@ hr {
 		//white-space: nowrap;
 	}
 
-	// .set-picture {
-	// 	margin-right: 4px;
-	// 	float:left;
-
-	// 	+ .set-picture {
-	// 		float:right;
-	// 		margin-right: 0;
-	// 		margin-left: 4px;
-	// 	}
-	// }
 }
 
 /*
@@ -720,4 +710,9 @@ hr {
     0 0 0 3px $primary-color-darken, 
     0 0 0 4px $primary-color-darken-extra;
   }
+}
+
+
+.fold-button {
+	margin: 10px;
 }

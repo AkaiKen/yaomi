@@ -1,7 +1,7 @@
 ## CodeIgniter Rewrite
 <ifmodule mod_rewrite.c>
 	RewriteEngine on
-	# RewriteBase /www/
+	RewriteBase /
 	## Removes access to the system folder by users.
     ## Additionally this will allow you to create a System.php controller,
     ## previously this would not have been possible.
@@ -24,6 +24,7 @@
     RewriteRule ^(.*)$ index.php?/$1 [L]
 
 </ifmodule>
+
 <IfModule !mod_rewrite.c>
     # If we don't have mod_rewrite installed, all 404's
     # can be sent to index.php, and everything works as normal.
@@ -47,16 +48,12 @@
 </ifmodule>
 ## end Gzip
 
-<ifModule mod_expires.c>
-  <filesmatch "\.(ico|flv|jpg|jpeg|png|gif|swf)$">
-      ExpiresActive on
-      ExpiresDefault "access plus 1 year"
-  </filesmatch>
-  <filesmatch "\.(js|css)$">
-      ExpiresActive on
-      ExpiresDefault "access plus 1 week"
-  </filesmatch>
-</ifModule>
+#<ifModule mod_expires.c>
+#  <filesmatch "\.(ico|flv|jpg|jpeg|png|gif|js|css|swf)$">
+#       ExpiresActive on
+#       ExpiresDefault "access plus 1 year"
+#   </filesmatch>
+#</ifModule>
 
 ## uncomment when large file upload needed (for updates)
 #php_value upload_max_filesize 100M

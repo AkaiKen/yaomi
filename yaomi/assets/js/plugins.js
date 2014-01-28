@@ -9,8 +9,6 @@
 		var self;
 		$.fn.foldable = function( options ) {
 
-			
-
 			//var options = args;
 
 			var defaults = {

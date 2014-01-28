@@ -6,6 +6,8 @@ class Card extends MY_Controller {
         parent::__construct();
         $this->load->model('inventory_model','inventory');
         $this->load->model('card_model','card');
+
+        $this->load->helper('inventory');
     }
 
 	public function index() {
@@ -78,6 +80,8 @@ class Card extends MY_Controller {
 				}
 
 				$intro['content'] = $this->layout->load_view('search_intro', $search_intro);
+				$intro['content'] .= $this->layout->load_view('utils/fold_buttons');
+				$intro['content'] .= $this->layout->load_view('specific/rarities_filter');
 			}
 		}
 

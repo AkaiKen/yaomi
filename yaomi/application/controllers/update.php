@@ -21,7 +21,7 @@ class Update extends MY_Controller {
 	    ini_set("memory_limit", 2000000000000);
 
 		$config['upload_path'] = './tmp/';
-		$config['allowed_types'] = 'sql|csv';
+		$config['allowed_types'] = '*';
 		//$config['max_size'] = '0';
 
 		$this->load->library('upload', $config);
@@ -64,33 +64,6 @@ class Update extends MY_Controller {
 
 					$xpld = explode('|',$line);
 
-					//echo 'xpld : ' ;
-					//var_dump($xpld);
-
-					// $new_card['name'] = trim($xpld[0]);
-					// $new_card['set_name'] = $xpld[1];
-					// $new_card['set_code'] = $xpld[2];
-					// $new_card['set_id'] = $this->set_model->get_set($new_card['set_code'], 'code', 'id') ; // calculated
-					// $new_card['internal_number'] = $xpld[3]; // not used here
-					// $new_card['card_type'] = $xpld[4];
-					// $new_card['power'] = $xpld[5];
-					// $new_card['toughness'] = $xpld[6];
-					// $new_card['loyalty'] = $xpld[7];
-					// $new_card['mana_cost'] = $xpld[8];
-					// $new_card['converted_mana_cost'] = $xpld[9];
-					// $new_card['artist'] = $xpld[10];
-					// $new_card['flavor_text'] = $xpld[11];
-					// $new_card['color'] = $xpld[12];
-					// $new_card['generated_mana'] = $xpld[13];
-					// $new_card['card_number'] = $xpld[14];
-					// $new_card['rarity'] = $xpld[15];
-					// $new_card['rulings'] = $xpld[16];
-					// $new_card['variation'] = $xpld[17];
-					// $new_card['ability'] = $xpld[18];
-					// $new_card['watermark'] = $xpld[19];
-					// $new_card['number_int'] = $xpld[20]; // not used here
-					// $new_card['name_fr'] = $xpld[23];
-
 					$new_card['name'] = trim($xpld[0]);
 					$new_card['set_name'] = $xpld[1];
 					$new_card['set_code'] = $xpld[2];
@@ -113,18 +86,20 @@ class Update extends MY_Controller {
 					$new_card['watermark'] = $xpld[18];
 					$new_card['name_fr'] = $xpld[19];
 
-					var_dump($new_card['set_id']);
-
 					// 1) la carte proprement dite
 
 					// on vérifie si on n'a pas déjà une ligne avec le même nom
 					$card_id = $this->card_model->get_card($new_card['name'], 'name', 'id');
+
+					var_dump($card_id);
 
 					// si on a déjà une...
 					if($card_id !== FALSE){
 						// on vérifie s'il existe une variation dans l'extension donnée
 		 				$variation = $this->card_model->get_card_variation($card_id, $new_card['set_code']);
 						// si elle existe...
+						var_dump($variation);
+
 						if($variation !== FALSE) {
 							// ...si elle est différente, on insère...
 							if($variation !== $new_card['variation']) {
@@ -138,11 +113,17 @@ class Update extends MY_Controller {
 							}
 						}
 						else {
-							// ... sinon on vérifie capacité et rulings
+							// ... sinon on vérifie capacité, rulings, et nom français
 							$ability = $this->card_model->get_card($card_id, 'id', 'ability');
 							$rulings = $this->card_model->get_card($card_id, 'id', 'rulings');
+							$name_fr = $this->card_model->get_card($card_id, 'id', 'name_fr');
 
-							if($ability !== $new_card['ability'] || $rulings !== $new_card['rulings']) {
+							if($ability !== $new_card['ability'] 
+								|| $rulings !== $new_card['rulings'] 
+								|| ($new_card['name_fr'] !== '' 
+									&& $new_card['name_fr'] !== NULL 
+									&& $name_fr !== $new_card['name_fr'])) {
+
 								// si on a des différences, on update...
 								$this->update_model->update_card($card_id, $new_card);
 							}

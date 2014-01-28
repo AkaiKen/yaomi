@@ -23,8 +23,7 @@
 			//onRecall : function(){ new fade(this,1); }
 		});
 
-		//polyfill_number();
-
+		listen_loader();
 		
 
 
@@ -105,6 +104,8 @@
 			return false;
 		}
 
+		display_loader();
+
 		var data = {};
 		var old_values = {};
 		jQuery(card).find('input').each(function(){
@@ -118,6 +119,8 @@
 			url: form.attr('action'),
 			data: data,
 			success:function(return_value){
+
+				hide_loader();
 
 				if(typeof(callback) === 'function') {
 					callback(card);
@@ -262,6 +265,27 @@
 		}
 
 	}
+
+
+	function listen_loader() {
+
+		jQuery("a[href]").on('click', function(){
+			display_loader();
+		});
+
+		jQuery("form").on('submit', function(){
+			display_loader();
+		});
+
+	}
+
+	function display_loader() {
+		jQuery('#loader').fadeIn(100);
+	}
+
+	function hide_loader() {
+		jQuery('#loader').fadeOut(200);
+	}	
 
 
 })()
