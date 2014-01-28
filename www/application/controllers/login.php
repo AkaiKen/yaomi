@@ -18,7 +18,9 @@ class Login extends MY_Controller {
     		$this->form_validation->set_rules('login', 'Identifiant', 'required');
 			$this->form_validation->set_rules('pwd', 'Mot de passe', 'required');
 			if ($this->form_validation->run() === FALSE) {
+                $data_output = array();
                 $data_output['login_form'] = $this->layout->load_view('login_form');
+                $data_output['page_title'] = 'Connexion';
                 $this->session->unset_userdata('login_errors');
                 $this->layout->output_view($data_output);
 			}

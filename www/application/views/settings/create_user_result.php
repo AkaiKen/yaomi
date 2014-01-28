@@ -1,0 +1,1 @@
+<p>L'utilisateur <?php echo $name . ' (' . $login . ')' ; ?> a été créé.</p>

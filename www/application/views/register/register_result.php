@@ -1,0 +1,1 @@
+<p>Votre compte a été créé, un admin doit le valider.</p>

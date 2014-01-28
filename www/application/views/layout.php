@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Inventaire YAOMI</title>
+  <title><?php if(isset($page_title)) echo $page_title ; ?> &mdash; yaomi</title>
   <base href="<?php echo base_url() ; ?>" />
   <meta name="description" content="">  
   <meta name="viewport" content="initial-scale=1.0">
@@ -20,7 +20,7 @@
         <div class="inner-wrapper">
             <div class="title">
                 <div class="logo">
-                  <!-- image -->
+                  <img src="assets/img/yaomi.png" height="85" width="90" alt="" />
                 </div>
                 <h1 class="main-title">
                   <a href="<?php echo site_url() ; ?>">Yet An Otter <span class="mtg">Magic</span> Inventory</a>
@@ -31,6 +31,7 @@
               <?php if(isset($login_form)) echo $login_form ; ?>
             <?php else : ?>
             <div class="actions">
+              <a class="settings-link" href="<?php echo site_url('settings') ; ?>"><?php echo $this->session->userdata('user_name'); ?></a> |
               <a class="logout-link" href="<?php echo site_url('logout') ; ?>">Déconnexion</a>
             </div>
             <nav class="main-nav">
@@ -65,10 +66,13 @@
       </div>
     </footer>
   </div>
+  <div id="loader" class="loader" aria-hidden="true">
+  </div>
 
   <script src="assets/js/vendors/jquery-1.10.0.min.js"></script>
   <script src="assets/js/vendors/jquery.details.min.js"></script>
   <script src="assets/js/vendors/lazyLoad.min.js"></script>
+  <script src="assets/js/vendors/number-polyfill.min.js"></script>
   <script src="assets/js/plugins.js"></script>
   <script src="assets/js/script.js"></script>
 

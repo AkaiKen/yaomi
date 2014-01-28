@@ -2,15 +2,15 @@
 
 class Settings_model extends CI_Model {
 
-	function create_user($login, $password, $email = '', $app_lang = '', $cards_lang = '', $is_admin = FALSE) {
+	function create_user($login, $password, $name = '', $email = '', $app_lang = '', $cards_lang = '', $is_admin = FALSE, $is_active = FALSE) {
 
 		// first: is this user already existing? if yes, we stop here and 
-		$this->db->select('id')->from('auth_users')->where('login', $login);
-		$exec = $this->db->get();
+		// $this->db->select('id')->from('auth_users')->where('login', $login);
+		// $exec = $this->db->get();
 
-		if($exec->num_rows() > 0) {
-			return FALSE;
-		}
+		// if($exec->num_rows() > 0) {
+		// 	return FALSE;
+		// }
 		
 		// encrypted password = sha1(pwd.salt)
     	// the salt is in config
@@ -21,10 +21,12 @@ class Settings_model extends CI_Model {
     	$new_user = array(
 		   'login' => $login,
 		   'password' => $encrypted_pwd,
+		   'name' => $name,
 		   'email' => $email,
 		   'app_lang' => $app_lang,
 		   'cards_lang' => $cards_lang,
-		   'is_admin' => $is_admin
+		   'is_admin' => $is_admin,
+		   'is_active' => $is_active
 		);
 
 		$this->db->insert('auth_users', $new_user); 
@@ -33,6 +35,13 @@ class Settings_model extends CI_Model {
 
 		return $new_user_id;
 			
+	}
+
+	function validate_user($user_id) {
+
+
+
+
 	}
 
 }

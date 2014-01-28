@@ -19,3 +19,15 @@ $selected: $primary-color;
 $link-normal: $primary-color-darken;
 $link-hover: $primary-color-darken-extra;
 $link-visited: $secondary-color;
+
+// messages
+$normal: $primary-color-darken;
+$normal-lighten: $primary-color-lighten-extra;
+$error: #b94a48;
+$error-lighten: adjust-lightness($error, 38);
+$info: #3a87ad;
+$info-lighten: adjust-lightness($info, 38);
+$warn: #c09853;
+$warn-lighten: adjust-lightness($warn, 38);
+$success: #468847;
+$success-lighten: adjust-lightness($success, 60);

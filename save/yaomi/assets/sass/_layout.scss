@@ -1,0 +1,51 @@
+*,
+*:after,
+*:before {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html {
+	overflow-y: scroll;
+}
+
+html, body { 
+	height: 100% ;
+}
+
+.page {
+	min-height: 100%;
+	position: relative;
+	overflow: auto;
+
+}
+
+.wrapper {
+	padding-bottom: 100px;
+
+}
+
+.main-header .inner-wrapper,
+.main-content .inner-wrapper,
+.main-footer .inner-wrapper {
+	//overflow: auto;
+}
+
+
+.main-footer {
+	height: 100px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.inner-wrapper {
+	width: 1200px;
+	max-width: 100%;
+	min-width: 300px;
+	margin: 0 auto;
+	min-height: 100%;
+}
+

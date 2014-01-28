@@ -372,7 +372,7 @@ $config['media_location'] = 'media/';
 $config['pictures_location'] = 'http://sanctuaire.lamecarlate.net/media/images/Magic/pics/';
 $config['symbols_location'] = 'http://sanctuaire.lamecarlate.net/media/images/Magic/symbols/';
 
-//$config['media_location'] = 'http://sanctuaire.lamecarlate.net/media/images/Magic/pics';
+$config['debug_view'] = TRUE;
 
 
 /* End of file config.php */

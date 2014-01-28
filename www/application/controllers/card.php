@@ -6,8 +6,6 @@ class Card extends MY_Controller {
         parent::__construct();
         $this->load->model('inventory_model','inventory');
         $this->load->model('card_model','card');
-
-        ini_set('display_errors', 1);
     }
 
 	public function index() {
@@ -76,13 +74,10 @@ class Card extends MY_Controller {
 						$data['content'] .= $this->layout->load_view('card',$card_instance);
 					}
 					$card_content['content'] = $this->layout->load_view('card_group',$data);
-					//$cards_view .= $this->layout->load_view('utils/group_foldable', $card_content);
 					$cards_view .= $this->layout->load_view('utils/group', $card_content);
 				}
 
 				$intro['content'] = $this->layout->load_view('search_intro', $search_intro);
-
-				//$this->load->view('layout', array('content' => $cards_view));
 			}
 		}
 
@@ -90,6 +85,7 @@ class Card extends MY_Controller {
 
 		$data_output = array();
 		$data_output['content'] = $intro_view . $cards_view;
+		$data_output['page_title'] = 'Résultats de recherche';
 
 		$this->layout->output_view($data_output);
 

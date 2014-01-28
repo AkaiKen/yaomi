@@ -27,7 +27,7 @@ class MY_Controller extends CI_Controller {
 
         // is the user on a public page?
         // if "no" and "no", we redirect them on the login page
-        $public_pages = array('login', 'about', 'credits', 'install');
+        $public_pages = array('login', 'about', 'credits', 'install', 'register');
  		if(!$is_logged && !in_array($page, $public_pages)) {
 			redirect('login');
             exit;
@@ -53,4 +53,20 @@ class MY_Controller extends CI_Controller {
             )
         );
     }
+
+    function _display_error($message = "") {
+        $data['title'] = 'Oups';
+        $data['content'] = $this->layout->load_view('utils/error', array('content' => $message));
+        $data_output['content'] = $this->layout->load_view('utils/group', $data);
+        $this->layout->output_view($data_output);
+    }
+
+    function _display_success($message = "") {
+        $data['title'] = 'Woké';
+        $data['content'] = $this->layout->load_view('utils/success', array('content' => $message));
+        $data_output['content'] = $this->layout->load_view('utils/group', $data);
+        $this->layout->output_view($data_output);
+    }
+
+
 }

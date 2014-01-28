@@ -23,6 +23,10 @@
 			//onRecall : function(){ new fade(this,1); }
 		});
 
+		listen_loader();
+		
+
+
 	});
 
 	/**
@@ -37,6 +41,13 @@
 	        e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
 	    }
 	}
+
+	function polyfill_number() {
+	    if (!Modernizr.inputtypes.number) {
+	        $('input[type=number]').spinner();
+	    }
+	}
+
 
 	function listen_update_cards(callback) {
 
@@ -93,6 +104,8 @@
 			return false;
 		}
 
+		display_loader();
+
 		var data = {};
 		var old_values = {};
 		jQuery(card).find('input').each(function(){
@@ -106,6 +119,8 @@
 			url: form.attr('action'),
 			data: data,
 			success:function(return_value){
+
+				hide_loader();
 
 				if(typeof(callback) === 'function') {
 					callback(card);
@@ -165,7 +180,7 @@
 			// the notification is no more virtual, bam
 			jQuery('.notification-wrapper').append(notification);
 			notification.text(message);
-			notification.fadeIn(1500);
+			notification.fadeIn(1000);
 
 			// now it's time to quit, dear
 			setTimeout(function(){ __delete_notification(notification_id) ; }, timer);
@@ -212,12 +227,12 @@
 		jQuery('#fold-card-groups').on('click', function(){
 			//console.log(jQuery('.card-group'));
 			//jQuery('.card-group').foldable.toggle('close');
-			toggle_fold_groups('close');
+			//toggle_fold_groups('close');
 		});
 
 		jQuery('#unfold-card-groups').on('click', function(){
-			//jQuery('.card-group').foldable.toggle('open');
-			toggle_fold_groups('open');
+			//jQuery('.card-group').foldable('open');
+			//toggle_fold_groups('open');
 		});
 	}
 
@@ -250,6 +265,27 @@
 		}
 
 	}
+
+
+	function listen_loader() {
+
+		jQuery("a").on('click', function(){
+			display_loader();
+		});
+
+		jQuery("form").on('submit', function(){
+			display_loader();
+		});
+
+	}
+
+	function display_loader() {
+		jQuery('#loader').fadeIn(100);
+	}
+
+	function hide_loader() {
+		jQuery('#loader').fadeOut(200);
+	}	
 
 
 })()
