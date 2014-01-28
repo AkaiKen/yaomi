@@ -1,9 +1,0 @@
-.gitignore
-.gitignore~
-inventory.sublime-project
-inventory.sublime-workspace
-.sass-cache
-logs
-yaomi
-yaomi-merge
-www/tmp

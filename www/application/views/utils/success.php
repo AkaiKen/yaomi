@@ -1,1 +1,0 @@
-<p><?php echo lang('utils.all_is_good') ; ?>
