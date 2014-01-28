@@ -1,0 +1,67 @@
+PRIO 1 : filtres : rareté (DONE), couleur
+
+PRIO 2 : pagination
+
+PRIO 3 : lazy loading pour les images ==> en cours (marche pas ???)
+
+PRIO 3 : tris supplémentaires :
+- dans collection : par couleur, par extension (actuellement défaut), mettre des boutons (des checkboxes) ; à l'intérieur
+- dans une extension : par ordre alphabétique (actuellement défaut), par numéro, par couleur (puis par numéro)
+- dans la recherche : par nom, par couleur, par extension (actuellement défaut)
+
+remplacer le polyfill
+
+extensions : intro avec logotype de l'extension (localisée si possible), et les raretés
+
+recherche possible par quantité ? très plus tard (need outil de recherche avancée)
+
+une image en fond double layer comme site Blizzard
+peut-être petites lampes vertes type années 30 sur les images
+
+Collection : afficher le nombre de cartes possédées dans une extension donnée (dans chaque groupe)
+
+Extension : afficher les cartes manquantes (éventuellement les cartes < 4)
+
+problème avec police Sansation : ligature (sur ffi par exemple) automatique mais caractère manque (pas de pb avec Arial)
+testé sous Ubuntu 13.04 Firefox 24, Windows XP Firefox 24 --> le pb vient de Firefox, car Chromium, IE et Opera ne font pas la ligature
+
+gestion des cartes recto/verso
+
+static pour les images, virer sessions (comment ?)
+
+config : la langue de l'appli, et la langue des cartes
+langues : mettre les textes dans les fichiers de langue => en cours
+
+empêcher quantités négatives (= 0)
+
+clic sur image carte emmène vers page dédiée, avec capa en toute lettre + rulings
+
+pb avec les images des terrains de base : voir où se situe le souci dans l'update ==> ce sont les variations, la récup des cartes voit le même numéro et écrase le fichier
+
+dans recherche : extension cliquable
+
+
+
+
+-------------------------------------------------------------------------------
+
+
+DONE ===> faire page de création d'utilisateur (plus tard : inscription)
+
+DONE ===> page d'accueil : indiquer que la carte est en random
+
+DONE ===> indication pour savoir le compte connecté
+
+DONE ===> PRIO 1 : recherche : séparer chaque recherche en segments pour chercher chaque terme indépendamment de leur position dans la phrase entrée. Ex : "wayfarer krosan" => actuellement aucun résultat, l'idée est de rechercher "wayfarer" et "krosan" pour pouvoir trouver "Krosan Wayferer"
+
+DONE ===> ajouter title dans head
+
+DONE ===> accélérer l'arrivée des notifications
+
+DONE ===> grouper les extensions par blocs
+
+DONE : si on fait "enrouler tout", on ne peut plus dérouler carte par carte
+
+DONE ===> PRIO 1 : recherche : caractères spéciaux : "ae" doit aussi rechercher "æ", idem pour "oe"
+
+DONE? ===> déconnexions intempestives, investiguer ! lié à la recherche, à la redirection faite dans la recherche ? (t'façon, changer ça, c'est moche)

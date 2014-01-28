@@ -1,0 +1,201 @@
+//  --------------------------------------------------------------
+//  SASS Gridification
+//  * Author:   Chris Eppstein
+//  A SASS adaptation of Blueprint CSS
+//  * Version:         0.7.1 (2008-02-25)
+//  * Website:         http://code.google.com/p/blueprintcss/
+//  Based on work by:
+//  * Lorin Tackett     [lorintackett.com]
+//  * Olav Bjorkoy      [bjorkoy.com]
+//  * Nathan Borror     [playgroundblues.com]
+//  * Jeff Croft        [jeffcroft.com]
+//  * Christian Metts   [mintchaos.com]
+//  * Khoi Vinh         [subtraction.com]
+//  Read more about using a grid here:
+//  * http://www.subtraction.com/2007/03/18/oh-yeeaahh
+//
+//  Modification by AkaiKen 2013-07-22 : 
+//  * float: left --> display: inline-block
+//  * little cleansing: who needs legacy :3 ?
+//  --------------------------------------------------------------
+
+
+
+
+// The number of columns in the grid.
+$blueprint-grid-columns: 24 !default;
+
+// The width of a column
+$blueprint-grid-width: 30px !default;
+
+// The amount of margin between columns
+$blueprint-grid-margin: 10px !default;
+
+// The width of a column including the margin. With default settings this is `40px`.
+$blueprint-grid-outer-width: $blueprint-grid-width + $blueprint-grid-margin;
+
+// The width of the container. With default settings this is `950px`.
+$blueprint-container-size: $blueprint-grid-outer-width * $blueprint-grid-columns - $blueprint-grid-margin;
+
+// A container for your columns.
+//
+// #### Note:
+// If you use this mixin without the class and want to support ie6
+// you must set text-align left on your container element in an IE stylesheet.
+@mixin container {
+  width: $blueprint-container-size;
+  margin: 0 auto;
+}
+
+// The last column in a row needs this mixin or it will end up
+// on the next row in some browsers.
+@mixin last {
+  margin-right: 0; 
+}
+
+// Use this mixins to set the width of n columns.
+@mixin column($n, $last: false) {
+  @include column-base($last);
+  width: span($n); 
+}
+
+// Return the width in pixels of `$n` columns.
+@function span($n) {
+  @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1);
+}
+
+// The basic set of styles needed to make an element
+// behave like a column:
+//
+// * display: inline-block
+// * half of gutter margin on the right and left
+// * Some IE fixes
+//
+// #### Note:
+// This mixin gets applied automatically when using `+column`
+// so you probably don't need to use it directly unless
+// you need to deviate from the grid or are trying
+// to reduce the amount of generated CSS.
+@mixin column-base($last: false) {
+  //@include float-left;
+  
+  @include inline-block;
+  
+  margin-right: $blueprint-grid-margin/2; 
+  margin-left: $blueprint-grid-margin/2; 
+}
+
+// Mixin to a column to append n empty columns to the right
+// by adding right padding to the column.
+@mixin append($n) {
+  padding-right: $blueprint-grid-outer-width * $n; }
+
+// Mixin to a column to append n empty columns to the left
+// by adding left padding to the column.
+@mixin prepend($n) {
+  padding-left: $blueprint-grid-outer-width * $n; 
+ }
+
+// Adds trailing margin.
+@mixin append-bottom($amount: 1.5em) {
+  margin-bottom: $amount; }
+
+// Adds leading margin.
+@mixin prepend-top($amount: 1.5em) {
+  margin-top: $amount; }
+
+// Base styles that make it possible to pull an element to the left.
+// #### Note:
+// This mixin gets applied automatically when using `+pull`
+// so you probably don't need to use it directly unless
+// you need to deviate from the grid or are trying
+// to reduce the amount of generated CSS.
+@mixin pull-base {
+  @include inline-block;
+  position: relative; 
+}
+
+// The amount of pulling for element to the left.
+// #### Note:
+// This mixin gets applied automatically when using `+pull`
+// so you probably don't need to use it directly unless
+// you need to deviate from the grid or are trying
+// to reduce the amount of generated CSS.
+@mixin pull-margins($n, $last: false) {
+  @if $last {
+    margin-left: -$blueprint-grid-outer-width * $n + $blueprint-grid-margin; 
+  }
+  @else {
+    margin-left: -$blueprint-grid-outer-width * $n; 
+  } 
+}
+
+// Moves a column `n` columns to the left.
+//
+// This mixin can also be used to change the display order of columns.
+//
+// If pulling past the last (visually) element in a row,
+// pass `true` as the second argument so the calculations can adjust
+// accordingly.
+
+// For example:
+//
+// HTML:
+// <pre class="source-code html">
+// <div id="one">One</div>
+// <div id="two">Two</div>
+// </pre>
+// Sass:
+// <pre class="source-code sass">
+// #one
+//   +column(18, true)
+//   +prepend(6)
+// #two
+//   +column(6)
+//   +pull(18, true)
+// </pre>
+@mixin pull($n, $last: false) {
+  @include pull-base;
+  @include pull-margins($n, $last); }
+
+@mixin push-base {
+  @include inline-block;
+  position: relative; }
+
+@mixin push-margins($n) {
+  margin: 0 (-$blueprint-grid-outer-width * $n) 1.5em $blueprint-grid-outer-width * $n; }
+
+// mixin to a column to push it n columns to the right
+@mixin push($n) {
+  @include push-base;
+  @include push-margins($n); }
+
+// Border on right hand side of a column.
+@mixin border($border-color: $blueprint-border-color, $border-width: 1px) {
+  padding-right: $blueprint-grid-margin / 2 - $border-width;
+  margin-right: $blueprint-grid-margin / 2;
+  border-right: #{$border-width} solid #{$border-color}; }
+
+// Border with more whitespace, spans one column.
+@mixin colborder($border-color: $blueprint-border-color, $border-width: 1px) {
+  padding-right: floor(($blueprint-grid-width + 2 * $blueprint-grid-margin - $border-width) / 2);
+  margin-right: ceil(($blueprint-grid-width + 2 * $blueprint-grid-margin - $border-width) / 2);
+  border-right: #{$border-width} solid #{$border-color}; }
+
+// Mixin this to an hr to make a horizontal ruler across a column.
+@mixin colruler($border-color: #dddddd) {
+  background: $border-color;
+  color: $border-color;
+  clear: both;
+  float: none;
+  width: 100%;
+  height: 0.1em;
+  margin: 0 0 1.45em;
+  border: none; }
+
+// Mixin this to an hr to make a horizontal spacer across a column.
+@mixin colspacer {
+  @include colruler;
+  background: white;
+  color: white;
+  visibility: hidden; }
