@@ -1,3 +1,5 @@
+.gitignore
+.gitignore~
 inventory.sublime-project
 inventory.sublime-workspace
 .sass-cache
