@@ -1,0 +1,48 @@
+/*
+==SETS
+*****************************/
+
+.page-set {
+
+	.set {
+		text-align: left;
+		padding: 10px;
+		//height: 80px;
+
+		@include column(4, middle);
+
+		@media only screen and ( max-width: $bp-medium) {
+			@include column(12, middle);
+		}
+	}
+
+	.set-link {
+
+		text-decoration: none;
+
+
+		span {
+			display: inline;
+			vertical-align: middle;
+		}
+		//display: block;
+		// display: table;
+		// width: 100%;
+		// height: 100%;
+		// vertical-align: middle;
+
+		// > * {
+		// 	display: table-cell;
+		// 	vertical-align: middle;
+
+		// }
+	}
+
+	.set-name {
+		//display: block;
+		//text-overflow: ellipsis;
+		overflow: hidden;
+		//white-space: nowrap;
+	}
+
+}

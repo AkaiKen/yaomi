@@ -1,5 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+$lang['settings.actions_list.title'] = 'Paramètres';
+
 $lang['settings.create_user.title'] = 'Créer un utilisateur';
 $lang['settings.create_user.login'] = 'Identifiant';
 $lang['settings.create_user.email'] = 'E-mail';

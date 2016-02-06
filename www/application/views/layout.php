@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="assets/css/style.css">
 	<script src="assets/js/vendors/modernizr-2.5.3.min.js"></script>
 </head>
-<body class="page-<?php echo $this->session->userdata('page'); ?>">
+<body class="page-<?php echo $this->session->userdata('page'); ?> <?php echo implode($this->body_class, ' ') ; ?>">
 	<div class="page">
 		<div class="wrapper">
 			<header class="main-header">
@@ -26,18 +26,22 @@
 						</h1>
 						<div class="main-subtitle">Pour classer vos cartes <span class="mtg">Magic: the Gathering</span>, une loutre à la fois</div>
 					</div>
-				<?php if(!is_logged()) : ?>
-				<?php if(isset($login_form)) echo $login_form ; ?>
-				<?php else : ?>
 				<div class="actions">
+				<?php if(!$this->is_logged) : ?>
+					<a class="login-link" href="<?php echo site_url('login') ; ?>">Connexion</a> |
+					<a class="register-link" href="<?php echo site_url('register') ; ?>">Inscription</a>
+				<?php else : ?>
 					<a class="settings-link" href="<?php echo site_url('settings') ; ?>"><?php echo $this->session->userdata('user_name'); ?></a> |
 					<a class="logout-link" href="<?php echo site_url('logout') ; ?>">Déconnexion</a>
+				<?php endif ; ?>
 				</div>
 				<nav class="main-nav">
 					<ul class="main-nav-menu">
 						<li class="main-nav-elt"><a class="home-link" href="<?php echo site_url('') ; ?>">Accueil</a></li>
 						<li class="main-nav-elt"><a  href="<?php echo site_url('set') ; ?>">Extensions</a></li>
+						<?php if($this->is_logged) : ?>
 						<li class="main-nav-elt"><a class="collection-link" href="<?php echo site_url('collection') ; ?>">Ma collection</a></li>
+						<?php endif ; ?>
 						<li class="main-nav-elt">
 							<div class="search">
 								<form method="get" action="<?php echo site_url('card/search'); ?>">
@@ -49,7 +53,7 @@
 						</li>
 					</ul>
 				</nav>
-		        <?php endif ; ?>
+		        
 		    </div>
 			</header>
 			<div role="main" class="main-content">

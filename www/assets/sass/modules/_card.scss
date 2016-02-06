@@ -1,0 +1,100 @@
+/* =CARTES
+--------------------------------------------------*/
+
+.card {
+
+	.name {
+		display: block;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+
+	.localized-name {
+		font-style: italic;
+	}
+
+	.form-group {
+		display: table;
+		width: 100%;
+	}
+	
+	.qty-label, .qty-number {
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	.qty-number {
+		width: 92px;
+	 	text-align: right;
+	}
+
+	.qty {
+		width: 60px;
+	}
+
+	.qty-total {
+		@extend .input-alt;
+	}
+
+	&.simple {
+
+		.qty-label {
+			position: absolute;
+			left: -999999px;
+		}
+		.card-name,
+		.form-group {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.name,
+		.qty-label,
+		.quick-input,
+		.qty-number {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.form-group {
+			width: auto;
+		}
+
+	}
+	
+}
+
+.card-picture {
+	background-color : #222;
+	background-image: image-url('back.jpg');
+	border: 10px solid #222;
+	border-radius : 8px;
+	display: inline-block;
+
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+
+	margin-bottom: 10px;
+}
+
+.card-name,
+.card-number,
+.set-name {
+	border-radius: 4px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	background: adjust-lightness($primary-color-lighten, -10);
+}
+
+.card-name,
+.set-name {
+	margin-bottom: 10px;
+}
+
+.card-number {
+	margin-top: 10px;
+}
+
+.color-hidden,
+.rarity-hidden {
+	@extend .visuallyhidden;
+}

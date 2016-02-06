@@ -9,14 +9,17 @@ class Home extends MY_Controller {
 
 	public function index() {
 
-		$user = $this->session->userdata('user_id');
+		// $user = NULL;
+		// if($this->is_logged) {
+		// 	$user = $this->session->userdata('user_id');
+		// }
 
 		$data_home = array();
 		$data_home['search_form'] = $this->load->view('search_form', array('id' => 'home'), TRUE);
 
 		$data_home['random_card'] = "";
 
-		$random_card = $this->inventory->get_random_card($user);
+		$random_card = $this->inventory->get_random_card($this->user);
 		if($random_card){
 			$card = current($random_card); // we want the (unique) card
 			$card_instance = current($card['instances']); // we want the (unique too) instance

@@ -360,8 +360,8 @@ $config['proxy_ips'] = '';
 $config['salt'] = 'D,9-o4e4';
 
 $config['media_location'] = 'media/';
-$config['pictures_location'] = 'http://sanctuaire.lamecarlate.net/media/images/Magic/pics/';
-$config['symbols_location'] = 'http://sanctuaire.lamecarlate.net/media/images/Magic/symbols/';
+$config['pictures_location'] = 'http://yaomi-static.oblivionbytes.eu/pics';
+$config['symbols_location'] = 'http://yaomi-static.oblivionbytes.eu/symbols';
 
 
 /* End of file config.php */

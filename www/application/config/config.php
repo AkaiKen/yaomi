@@ -180,7 +180,7 @@ $config['directory_trigger']	= 'd'; // experimental not currently in use
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 4;
+$config['log_threshold'] = 2;
 
 /*
 |--------------------------------------------------------------------------
@@ -364,15 +364,12 @@ $config['salt'] = 'D,9-o4e4';
 | with trailing slash !
 |
 */
-// $config['media_location'] = 'media/';
-// $config['pictures_location'] = $config['media_location'] . 'pictures/';
-// $config['symbols_location'] = $config['media_location'] . 'symbols/';
-
 $config['media_location'] = 'media/';
-$config['pictures_location'] = 'http://sanctuaire.lamecarlate.net/media/images/Magic/pics/';
-$config['symbols_location'] = 'http://sanctuaire.lamecarlate.net/media/images/Magic/symbols/';
+$config['pictures_location'] = $config['media_location'] . 'pictures/';
+$config['symbols_location'] = $config['media_location'] . 'symbols/';
 
 $config['debug_view'] = TRUE;
+$config['debug_lang'] = TRUE;
 
 
 /* End of file config.php */

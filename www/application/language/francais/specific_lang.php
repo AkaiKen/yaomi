@@ -13,5 +13,8 @@ $lang['specific.colors.blue'] = 'Bleu';
 $lang['specific.colors.black'] = 'Noir';
 $lang['specific.colors.red'] = 'Rouge';
 $lang['specific.colors.green'] = 'Vert';
+$lang['specific.colors.colorless'] = 'Incolore';
 $lang['specific.colors.others'] = 'Autres';
 $lang['specific.colors.exclusive'] = 'Exclusif';
+
+$lang['specific.card_number'] = 'n<sup>o</sup> %s';

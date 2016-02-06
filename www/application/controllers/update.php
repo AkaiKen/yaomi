@@ -2,11 +2,56 @@
 
 class Update extends MY_Controller {
 
+	public function __construct(){
+        parent::__construct();
+
+        $this->lang->load('update');
+       
+    }
+
 	function index() {
-		echo 'coucou';
+		$this->list_actions();
 	}
 
-	function manual() {
+	public function list_actions() {
+    	$actions = array();
+    	$actions['title'] = lang('update.actions_list.title');
+		$actions['content'] = $this->layout->load_view('update/actions_list', array('is_admin' => $this->session->userdata('is_admin')));
+		$data_output['content'] = $this->layout->load_view('utils/group', $actions);
+		$this->layout->output_view($data_output);
+    }
+
+    public function add_set() {
+    	$this->load->helper(array('form')); 
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('name', lang('update.add_set.name'), 'trim|required|xss_clean');
+		$this->form_validation->set_rules('name_fr', lang('update.add_set.name_fr'), 'trim|required|xss_clean');
+		$this->form_validation->set_rules('code', lang('update.add_set.code'), 'trim|required|xss_clean');
+		$this->form_validation->set_rules('date', lang('update.add_set.date'), 'trim|required|xss_clean');
+
+		$add_set = array();
+		$add_set['title'] = lang('update.add_set.title');
+
+		if ($this->form_validation->run() === FALSE) {
+
+   			$add_set['content'] = $this->layout->load_view('update/add_set_form');
+   			$data_output['content'] = $this->layout->load_view('utils/group', $add_set);
+			$this->layout->output_view($data_output);
+
+		}
+		else {
+			$set_data = $this->input->post(NULL, TRUE);
+
+			$this->load->model('update_model');
+
+			$this->update_model->insert_set($set_data);
+
+			
+		}
+    }
+
+	public function manual() {
 
 		//phpinfo();
 
@@ -59,6 +104,7 @@ class Update extends MY_Controller {
 
 					echo '<hr />';
 
+					
 					//var_dump($line);
 
 					$xpld = explode('|',$line);
@@ -92,23 +138,7 @@ class Update extends MY_Controller {
 					if(isset($xpld[19])){$new_card['watermark'] = trim($xpld[19]);}
 					if(isset($xpld[20])){$new_card['name_fr'] = trim($xpld[20]);}
 
-					// $new_card['card_type'] = $xpld[3];
-					// $new_card['power'] = $xpld[4];
-					// $new_card['toughness'] = $xpld[5];
-					// $new_card['loyalty'] = $xpld[6];
-					// $new_card['mana_cost'] = $xpld[7];
-					// $new_card['converted_mana_cost'] = $xpld[8];
-					// $new_card['artist'] = $xpld[9];
-					// $new_card['flavor_text'] = $xpld[10];
-					// $new_card['color'] = $xpld[11];
-					// $new_card['generated_mana'] = $xpld[12];
-					// $new_card['card_number'] = $xpld[13];
-					// $new_card['rarity'] = $xpld[14];
-					// $new_card['rulings'] = $xpld[15];
-					// $new_card['variation'] = $xpld[16];
-					// $new_card['ability'] = $xpld[17];
-					// $new_card['watermark'] = $xpld[18];
-					// $new_card['name_fr'] = $xpld[19];
+					var_dump($new_card);
 
 					// 1) la carte proprement dite
 
@@ -117,11 +147,10 @@ class Update extends MY_Controller {
 
 					// si on a déjà une...
 					if($card_id !== FALSE){
+
 						// on vérifie s'il existe une variation dans l'extension donnée
 		 				$variation = $this->card_model->get_card_variation($card_id, $new_card['set_code']);
 						// si elle existe...
-						//var_dump($variation);
-
 						if($variation !== FALSE) {
 							// ...si elle est différente, on insère...
 							if(isset($new_card['variation']) && $variation !== $new_card['variation']) {
@@ -135,6 +164,7 @@ class Update extends MY_Controller {
 							}
 						}
 						else {
+							
 							// ... sinon on vérifie capacité, rulings, et nom français
 							$ability = $this->card_model->get_card($card_id, 'id', 'ability');
 							$rulings = $this->card_model->get_card($card_id, 'id', 'rulings');
@@ -174,17 +204,23 @@ class Update extends MY_Controller {
 						// on n'a pas reconnu l'extension, on ne fait rien
 					}
 					else {
-						var_dump($new_card['name']);
-						var_dump($card_id);
-						var_dump($new_card['set_id']);
-						var_dump($new_card['card_internal_id']);
+
+						// 	$instances = $this->card_model->get_card_internal_id($card_id);
+						// if($instances !== FALSE) {
+						// 	if(in_array($new_card['card_internal_id'],$instances)) {
 
 						$sets = $this->card_model->get_card_sets($card_id);
-						if($sets !== FALSE) {
-							if(in_array($new_card['set_id'],$sets)) {
+						$instances = $this->card_model->get_card_internal_id($card_id);
+						if($instances !== FALSE) {
+							var_dump('new set id : ' . $new_card['set_id']);
+							var_dump($sets);
+							if(in_array($new_card['card_internal_id'], $instances)) {
 								// on update la ligne card x set
 								$this->update_model->update_card_set($card_id, $new_card['set_id'], $new_card);
 							}
+							// elseif(in_array($new_card['set_id'], $set)) {
+							// 	// on recupère l'instance de carte, pour 
+							// }
 							else {
 								// on insère dans card x set
 								$this->update_model->insert_card_set($card_id, $new_card['set_id'], $new_card);

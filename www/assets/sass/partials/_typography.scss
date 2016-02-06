@@ -1,0 +1,87 @@
+/***********************************
+==TYPOGRAPHY
+***********************************/
+
+@font-face {
+    font-family: 'Sansation';
+    src: url('../fonts/sansation-regular.eot');
+    src: url('../fonts/sansation-regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/sansation-regular.woff') format('woff'),
+        url('../fonts/sansation-regular.ttf') format('truetype'),
+        url('../fonts/sansation-regular.svg#sansationregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sansation';
+    src: url('../fonts/sansation-bold.eot');
+    src: url('../fonts/sansation-bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/sansation-bold.woff') format('woff'),
+        url('../fonts/sansation-bold.ttf') format('truetype'),
+        url('../fonts/sansation-bold.svg#sansationbold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sansation';
+    src: url('../fonts/sansation-bolditalic.eot');
+    src: url('../fonts/sansation-bolditalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/sansation-bolditalic.woff') format('woff'),
+        url('../fonts/sansation-bolditalic.ttf') format('truetype'),
+        url('../fonts/sansation-bolditalic.svg#sansationbold_italic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Sansation';
+    src: url('../fonts/sansation-italic.eot');
+    src: url('../fonts/sansation-italic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/sansation-italic.woff') format('woff'),
+        url('../fonts/sansation-italic.ttf') format('truetype'),
+        url('../fonts/sansation-italic.svg#sansationitalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'GoudyOldStyle';
+    src: url('../fonts/goudyoldstyle.eot');
+    src: url('../fonts/goudyoldstyle.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/goudyoldstyle.woff') format('woff'),
+        url('../fonts/goudyoldstyle.ttf') format('truetype'),
+        url('../fonts/goudyoldstyle.svg#goudy_medievalmedieval') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'icons';
+    src:url('../fonts/icons.eot');
+    src:url('../fonts/icons.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/icons.woff') format('woff'),
+        url('../fonts/icons.ttf') format('truetype'),
+        url('../fonts/icons.svg#icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'Sansation', 'Arial', 'sans-serif';
+    -moz-font-feature-settings: "liga" off; // for now
+}
+
+.main-title {
+    font-family: 'GoudyOldStyle', 'Arial', 'sans-serif';
+}
+
+
+@for $i from 1 through 6 {
+	h#{$i}, .h#{$i}-like { 
+		
+        
+	}
+}
+

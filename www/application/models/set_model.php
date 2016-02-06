@@ -12,7 +12,8 @@ class Set_model extends CI_Model {
 
 	//	echo $this->db->last_query();
 
-		if($exec->num_rows() > 0) {
+		// if($exec->num_rows() > 0) {
+		if(count($exec->result()) > 0) {
 			if($field_out !== '') {
 				return $exec->row()->$field_out;
 			}
@@ -22,7 +23,6 @@ class Set_model extends CI_Model {
 	}
 
 	function get_all_sets($grouped = TRUE) {
-
 
 		$what = array(
 			'mdm_sets.name AS set_name', 
@@ -43,12 +43,13 @@ class Set_model extends CI_Model {
 
 		$this->db->select($what)
 			->from('mdm_sets')
-			->join('mdm_blocks', 'mdm_blocks.id = mdm_sets.fk_block', 'left')
-			->order_by('mdm_blocks.order', 'desc');
+			->join('mdm_blocks', 'mdm_blocks.id = mdm_sets.fk_block', 'left');
+		//	->order_by('mdm_blocks.order', 'desc');
 
 		$exec = $this->db->get();
 
-		if($exec->num_rows() > 0) {
+		// if($exec->num_rows() > 0) {
+		if(count($exec->result()) > 0) {
 			if(!$grouped){
 				return $exec->result();
 			}
@@ -80,7 +81,8 @@ class Set_model extends CI_Model {
 
 		$exec = $this->db->get();
 
-		if($exec->num_rows() > 0) {
+		// if($exec->num_rows() > 0) {
+		if(count($exec->result()) > 0) {
 			return $exec->result();
 		}
 		return FALSE;
@@ -90,13 +92,9 @@ class Set_model extends CI_Model {
 	function get_set_symbol($set_code) {
 
 		$symbols_location = $this->config->item('symbols_location');
-		$image_full_path = $symbols_location . $set_code . '.png';
+		$image_full_path = $symbols_location . '/' . $set_code . '.png';
 
-		$is_remote = (strpos($symbols_location, '//')) ? TRUE : FALSE;
-
-		// $image_full_path = ($this->_file_exists($image_full_path, $is_remote)) 
-		// 	? $image_full_path 
-		// 	: NULL ;
+		$image_full_path = (_file_exists($image_full_path)) ? $image_full_path : NULL ;
 
 		return $image_full_path;
 

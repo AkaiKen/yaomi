@@ -28,14 +28,14 @@
 		
 		//polyfill_number();
 		
-		// if(jQuery('.filter-rarities').length) {
-		// 	var input = jQuery('.filter-rarities').find('input');
-		// 	listen_filter_rarities(input);
-		// }
+		if(jQuery('.filter-rarities').length) {
+			var inputRarities = jQuery('.filter-rarities').find('input');
+			listen_filter_rarities(inputRarities);
+		}
 
 		if(jQuery('.filter-colors').length) {
-			var input = jQuery('.filter-colors').find('input');
-			listen_filter_colors(input);
+			var inputColors = jQuery('.filter-colors').find('input');
+			listen_filter_colors(inputColors);
 		}
 
 	});
@@ -47,42 +47,10 @@
      * @param e : mot-clé pour "event"
      */
 	function stop_event(e,stopPropagation){
-	    e.preventDefault ? e.preventDefault() : e.returnValue = false;
-	    if(typeof(stopPropagation) == 'undefined'){
-	        e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
-	    }
-	}
-
-	function polyfill_number() {
-	    
-        $('input[type=number]').each(function(){
-
-        });
-
-        var domMouseScrollHandler = function (e) {
-            var t;
-            t = e.data.p, e.preventDefault(), 0 > e.originalEvent.detail ? t.increment() : t.decrement()
-        }
-        var mouseWheelHandler = function (e) {
-            var t;
-            t = e.data.p, e.preventDefault(), e.originalEvent.wheelDelta > 0 ? t.increment() : t.decrement()
-        }
-        var increment = function () {
-       		var e, t;
-            this.elem.is(":disabled") 
-            	|| (t = this.getParams(), e = n.preciseAdd(t.val, t.step), 
-            		null != t.max && parseFloat(e) > parseFloat(t.max) 
-            		&& (e = t.max), e = this.stepNormalize(e), this.elem.val(e).change())
-        }
-
-        var decrement = function () {
-            var e, t;
-            this.elem.is(":disabled") 
-            	|| (t = this.getParams(), e = n.preciseSubtract(t.val, t.step), 
-            		null != t.min && parseFloat(e) < parseFloat(t.min) 
-            		&& (e = t.min), e = this.stepNormalize(e), this.elem.val(e).change())
-        }
-	    
+		e.preventDefault ? e.preventDefault() : e.returnValue = false;
+		if(typeof(stopPropagation) == 'undefined'){
+			e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
+		}
 	}
 
 	function listen_update_cards(callback) {
@@ -97,11 +65,21 @@
 			t.data('old_val[deck]', t.find('.qty-deck').val());
 		});
 
+		if(jQuery('.quick-input').length) {
+			// we are in 'quick input' mode
+			var quick_input = cards.find('input.qty-quick-total');
+			quick_input.off('change.update').on('change.update',function(event) {
+				stop_event(event);
+				var t = jQuery(this);
+				__fire_update(t);
+			});
+		}
+
 		var input = cards.find('input.qty-total, input.qty-deck');
 
 		// when the Enter key is fired while the focus being on an input...
-		input.off('keyup.update').on('keyup.update',function(e) {
-			if(e.keyCode == 13) {
+		input.off('keyup.update').on('keyup.update',function(event) {
+			if(event.keyCode == 13) {
 				// ... this input loses focus...
 				jQuery(this).blur();
 			}
@@ -109,7 +87,7 @@
 
 		// ...and you know what happens to little inputs that lose focus?
 		input.off('blur.update').on('blur.update', function(event) {
-			stop_event(event);			
+			stop_event(event);		
 			var t = jQuery(this);
 			__fire_update(t);
 
@@ -134,7 +112,7 @@
 			// only if current value is different from old one
 			// (we don't want to fire update when unnecessary)
 			var card_parent = t.closest('.card');
-			if(t.hasClass('qty-total')){
+			if(t.hasClass('qty-total') || t.hasClass('qty-quick-total')){
 				if(t.val() !== card_parent.data('old_val[total]')){
 					update_cards(form, card_parent, callback);
 				}
@@ -159,8 +137,14 @@
 		var old_values = {};
 		jQuery(card).find('input').each(function(){
 			var t = jQuery(this);
-			//var name = jQuery(this).attr('name');
-			data[t.attr('name')] = t.val();
+			if(t.attr('type') === 'radio'){
+				if(t.is(':checked')) {
+					data[t.attr('name')] = t.val();
+				}
+			}
+			else {
+				data[t.attr('name')] = t.val();
+			}
 			old_values[t.data('qty')] = t.val();
 		});
 		
@@ -246,8 +230,8 @@
 
 	function collection_card_cleansing(card){
 
-		var total_qty_val = parseInt(card.find('.qty-total').val());
-		var deck_qty_val = parseInt(card.find('.qty-deck').val());
+		var total_qty_val = parseInt(card.find('.qty-total').val(), 10);
+		var deck_qty_val = parseInt(card.find('.qty-deck').val(), 10);
 
 		// you could ask: why test the two values? "deck_qty" is supposed to be a subset of "total_qty"!
 		// yes, this is how I conceived the thing, but it's up to the user to take care of 
@@ -309,55 +293,38 @@
 		filter_cards(input, 'rarity');
 		jQuery(input).off('change.filter_rarities').on('change.filter_rarities', function(event){
 			stop_event(event);
-			filter_cards(input, 'rarity');
+			filter_cards(this, 'rarity');
 		});
 	}
 
 	function listen_filter_colors(input) {
-		filter_cards(input, 'color');
+		// because we can have cards with two or more colors
+		filter_cards(input, 'color', false);
 		jQuery(input).off('change.filter_colors').on('change.filter_colors', function(event){
 			stop_event(event);
-			filter_cards(input, 'color');
+			filter_cards(this, 'color', false);
 		});
-	}	
+	}
 
-	function filter_cards(input, filter, special_values) {
+	function filter_cards(input, filter, isStrict) {
+
 		var cards = jQuery('.card');
 
-		jQuery(input).each(function(){
-			var $t = jQuery(this),
-				$filtered_cards = jQuery(".card").filter_by_data(filter, $t.val() );
+		jQuery(input).each(function() {
+			var $t = jQuery(this);
+			var $filtered_cards = jQuery(".card").filter_by_data(filter, $t.val(), isStrict );
 
 			if($t.is(':checked')) {
-				$filtered_cards.removeClass('hidden');
+				$filtered_cards.removeClass(filter + '-hidden');
 			}
 			else {
-				$filtered_cards.addClass('hidden');
+				$filtered_cards.addClass(filter + '-hidden');
 			}
 
 		});
 
 		cleansing_filters();
 	}
-
-	// function filter_rarities(input) {
-	// 	var cards = jQuery('.card');
-
-	// 	jQuery(input).each(function(){
-	// 		var $t = jQuery(this),
-	// 			$filtered_cards = jQuery(".card").filter_by_data("rarity", $t.val() );
-
-	// 		if($t.is(':checked')) {
-	// 			$filtered_cards.removeClass('hidden');
-	// 		}
-	// 		else {
-	// 			$filtered_cards.addClass('hidden');
-	// 		}
-
-	// 	});
-
-	// 	cleansing_filters();
-	// }
 
 	function cleansing_filters() {
 
@@ -371,10 +338,9 @@
 			else {
 				$t.hide();
 			}
-
 		});
 
 	}
 
 
-})()
+})();

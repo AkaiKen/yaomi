@@ -10,8 +10,29 @@ class Card extends MY_Controller {
         $this->load->helper('inventory');
     }
 
-	public function index() {
+    public function _remap($query, $params = array()) {
 
+
+    		switch($query) {
+    			case 'index':
+    				$this->index();
+    				break;
+    			case 'search':
+    				$args = isset($params[0]) ? $params[0] : '';
+    				$this->search($args);
+    				break;
+    			case 'update':
+    				$this->update();
+    				break;
+    			default:
+					$this->_card_details($query);
+					break;
+    		}		
+
+	}
+
+	public function index() {
+		// what to do?
 	}
 
 	public function search($search_term = '') {
@@ -19,7 +40,6 @@ class Card extends MY_Controller {
 		if(trim($search_term) === '' ) {
 			if($this->input->get('term',TRUE)) {
 				$search_term = urldecode($this->input->get('term', TRUE));
-				//redirect('card/search/'.urlencode($this->input->get('term', TRUE)));
 			}
 			else {
 				redirect('/');
@@ -81,7 +101,7 @@ class Card extends MY_Controller {
 
 				$intro['content'] = $this->layout->load_view('search_intro', $search_intro);
 				$intro['content'] .= $this->layout->load_view('utils/fold_buttons');
-				$intro['content'] .= $this->layout->load_view('specific/rarities_filter');
+				$intro['content'] .= $this->layout->load_view('filter/rarities_filter');
 			}
 		}
 
@@ -89,6 +109,16 @@ class Card extends MY_Controller {
 
 		$data_output = array();
 		$data_output['content'] = $intro_view . $cards_view;
+		$data_output['page_title'] = 'Résultats de recherche';
+
+		$this->layout->output_view($data_output);
+
+	}
+
+	public function _card_details($query) {
+
+		$data_output = array();
+		$data_output['content'] = $query;
 		$data_output['page_title'] = 'Résultats de recherche';
 
 		$this->layout->output_view($data_output);
@@ -110,7 +140,13 @@ class Card extends MY_Controller {
 
 		foreach($cards AS $card_id => $qty){
 			$total_qty = $qty['total'];
-			$deck_qty = $qty['deck'];
+			if(isset($qty['quick']) && ($qty['total'] === '' || $qty['total'] <= 4)) {
+				$total_qty = $qty['quick'];
+			}
+			$deck_qty = NULL;
+			if(isset($qty['deck'])){
+				$deck_qty = $qty['deck'];
+			}
 			$user_id = $this->session->userdata('user_id');
 			$this->inventory->update_qty($card_id, $total_qty, $deck_qty, $user_id);
 		}

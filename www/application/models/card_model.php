@@ -16,7 +16,8 @@ class Card_model extends CI_Model {
 
 		$exec = $this->db->get();
 
-		if($exec->num_rows() > 0) {
+		//if($exec->num_rows() > 0) {
+		if(count($exec->result()) > 0) {
 			if($field_out !== '' || !$several_out) {
 				return $exec->row()->$field_out;
 			}
@@ -32,13 +33,34 @@ class Card_model extends CI_Model {
 
 		$exec = $this->db->get();
 
-		if($exec->num_rows() > 0) {
+		//if($exec->num_rows() > 0) {
+		if(count($exec->result()) > 0) {
 			$result = $exec->result();
+
 			$sets = array();
 			foreach($result as $set) {
 				$sets[] = $set->fk_set;
 			}
 			return $sets;
+		}
+		return FALSE;
+	}
+
+	function get_card_internal_id($card_id) {
+		$this->db->select('card_internal_id')
+			->from('mdm_cards_x_sets')
+			->where('fk_card', $card_id);
+
+		$exec = $this->db->get();
+
+		if(count($exec->result()) > 0) {
+			$result = $exec->result();
+
+			$instances = array();
+			foreach($result as $instance) {
+				$instances[] = $instance->card_internal_id;
+			}
+			return $instances;			
 		}
 		return FALSE;
 	}
@@ -53,7 +75,8 @@ class Card_model extends CI_Model {
 
 		$exec = $this->db->get();
 
-		if($exec->num_rows() > 0 && $exec->row()->variation !== NULL && $exec->row()->variation != 0) {
+		//if($exec->num_rows() > 0 && $exec->row()->variation !== NULL && $exec->row()->variation != 0) {
+		if(count($exec->result()) > 0 && $exec->row()->variation !== NULL && $exec->row()->variation != 0) {
 			return $exec->row()->variation;
 		}
 		return FALSE;

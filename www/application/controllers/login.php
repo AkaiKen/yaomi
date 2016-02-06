@@ -4,7 +4,7 @@ class Login extends MY_Controller {
 
 	public function __construct(){
         parent::__construct();
-        $this->load->model('login_model', 'login_m');
+        $this->load->model('user_model');
     }
 
     public function index() {
@@ -19,7 +19,7 @@ class Login extends MY_Controller {
 			$this->form_validation->set_rules('pwd', 'Mot de passe', 'required');
 			if ($this->form_validation->run() === FALSE) {
                 $data_output = array();
-                $data_output['login_form'] = $this->layout->load_view('login_form');
+                $data_output['content'] = $this->layout->load_view('login/login_form');
                 $data_output['page_title'] = 'Connexion';
                 $this->session->unset_userdata('login_errors');
                 $this->layout->output_view($data_output);
@@ -35,7 +35,7 @@ class Login extends MY_Controller {
 
     private function _authenticate($login, $pwd) {
 
-        $is_authenticated = $this->login_m->authenticate($login, $pwd);
+        $is_authenticated = $this->user_model->authenticate($login, $pwd);
 
         if($is_authenticated) {
             $this->_go_inside();

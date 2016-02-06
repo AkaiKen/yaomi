@@ -49,6 +49,9 @@
 	<div class="form-group">
 		<label class="qty-label" for="<?php echo $id ; ?>[total]">Quantité possédée</label>
 		<div class="qty-number">
+			<?php if(isset($read_only) && $read_only) : ?>
+			<span class="qty qty-total"><?php echo (isset($qty)) ? $qty : 0 ; ?></span>
+			<?php else : ?>
 			<input 
 				class="qty qty-total" 
 				type="number" 
@@ -57,8 +60,10 @@
 				name="<?php echo $id ; ?>[total]"
 				data-qty="total"
 			/>
+		<?php endif; ?>
 		</div>
 	</div>
+	<?php if(!isset($display_deck_qty) || $display_deck_qty !== FALSE) : ?>
 	<div class="form-group">
 		<label class="qty-label " for="<?php echo $id ; ?>[deck]">dont dans un deck :</label>
 		<div class="qty-number">
@@ -73,4 +78,6 @@
 		</div>
 	</div>
 	<?php endif ; ?>
+	<?php endif ; ?>
+	<div class="card-number"><?php echo sprintf(lang('specific.card_number'), $card_number) ; ?></div>
 </section>

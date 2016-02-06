@@ -10,7 +10,8 @@ class Register_model extends CI_Model {
 
 		$query_admin = $this->db->get();
 
-		if($query_admin->num_rows() > 0){
+		// if($query_admin->num_rows() > 0){
+		if(count($query_admin->result()) > 0) {
 
 			$this->load->library('email');
 

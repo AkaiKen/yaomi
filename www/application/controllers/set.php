@@ -11,13 +11,13 @@ class Set extends MY_Controller {
 
     }
 
-    public function _remap($code) {
+    public function _remap($code, $sort) {
 
 		if($code === 'index' || $code === "liste") {
 			$this->liste();
 		}
 		else {
-			$this->_cards_set($code);
+			$this->_cards_set($code, $sort);
 		}
 
 	}
@@ -32,6 +32,8 @@ class Set extends MY_Controller {
 
 		$sets_list = $this->set->get_all_sets();
 
+
+
 		$data = array();
 		$data['content'] = '' ;
 
@@ -42,18 +44,11 @@ class Set extends MY_Controller {
 			$set_content['title'] = $block['name'];
 			$set_content['title'] .= (isset($block['name_fr']) && $block['name_fr'] !== '') ? ' ('.$block['name_fr'].')' : '' ;
 			$data['content'] = '' ;
-			//$data['first'] = $first;
 			$set_content['classes'] = 'set-group';
-			//$first = FALSE;
 			foreach($block['sets'] as $set) {
-				//var_dump($set);
 				$data['content'] .= $this->layout->load_view('set',$set);
 			}
-			//$cards_in_set = count($set['instances']);
-			//$collection_intro['cards_owned'] += $cards_in_set; 
 			
-
-			//var_dump($data);
 			$set_content['foldable'] = TRUE;
 			$set_content['open'] = TRUE;
 			$set_content['content'] = $data['content'];
@@ -67,26 +62,14 @@ class Set extends MY_Controller {
 		$data_output['page_title'] = 'Liste des extensions';
 		$this->layout->output_view($data_output);
 
-		// var_dump($sets_list);
-		// die();
-
-		// $data = array();
-		// $data['content'] = '' ;
-		// foreach($sets_list as $set) {
-		// 	//$set->image = $this->set->get_set_symbol($set->code);
-		// 	$data['content'] .= $this->load->view('set',$set,TRUE);
-		// }
-	
-		// $data_output = array();
-		// $data_output['content'] = $this->load->view('sets_list', $data, TRUE);
-		// $data_output['page_title'] = 'Liste des extensions';
-		// $this->layout->output_view($data_output);
 	}
 
 
-	public function _cards_set($set_code) {
+	public function _cards_set($set_code, $sort = 'num', $quick_input = FALSE) {
 
-		$user =  $this->session->userdata('user_id');
+		//$quick_input = TRUE;
+
+		//$user =  $this->session->userdata('user_id');
 
 		$set_info = $this->set->get_set($set_code, 'code');
 
@@ -95,9 +78,7 @@ class Set extends MY_Controller {
 		$intro['open'] = TRUE;
 		$intro['classes'] = 'intro';
 
-		$set_cards_list = $this->inventory->get_set_cards($user, $set_code);
-
-
+		$set_cards_list = $this->inventory->get_set_cards($this->user, $set_code, $sort);
 
 		$cards_view = '';
 		if($set_cards_list === FALSE) {
@@ -105,8 +86,8 @@ class Set extends MY_Controller {
 		}
 		else {
 			$intro['content'] = ''; // prez rapide de l'extension
-			$intro['content'] .= $this->layout->load_view('specific/rarities_filter');
-			$intro['content'] .= $this->layout->load_view('specific/colors_filter');
+			$intro['content'] .= $this->layout->load_view('filter/rarities_filter');
+			$intro['content'] .= $this->layout->load_view('filter/colors_filter');
 			$cards_view = '';
 			$data = '';
 			foreach($set_cards_list as $set_cards) {	
@@ -114,9 +95,19 @@ class Set extends MY_Controller {
 				$card_content['classes'] = 'card-group';
 				$card_content['title'] = 'Cartes';
 				foreach($set_cards['instances'] as $card) {
-					$card->display_name = TRUE;
-					$card->landscape = ((int)$card->is_landscape === 1);
-					$data['content'] .= $this->layout->load_view('card', $card);
+					if(!$quick_input) {
+						$card->display_name = TRUE;
+						if(!$this->is_logged) {
+							$card->display_deck_qty = FALSE;
+							$card->display_qty = FALSE;
+						}
+						$card->landscape = ((int)$card->is_landscape === 1);
+						$data['content'] .= $this->layout->load_view('card', $card);
+					}
+					else {
+						$data['content'] .= $this->layout->load_view('card/card_simple',$card);
+					}
+					
 				}
 			}
 			$card_content['content'] = $this->layout->load_view('card_group',$data);

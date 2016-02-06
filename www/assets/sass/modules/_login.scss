@@ -1,0 +1,59 @@
+
+/* ==LOGIN */
+
+.login-wrapper {
+	position: relative;
+
+	.register-link {
+		//float: right;
+	}
+
+	.login-form-errors {
+		border: 1px solid $primary-color-lighten;
+		border-top: none;
+		border-radius: 4px;
+		background-color :  $primary-color-lighten-extra;
+		z-index:1;
+		padding: 50px 4px 4px 4px;
+		position: absolute;
+		left: 30px;
+		top:0;
+		margin: 4px 1% 4px 30px;
+		box-shadow: 0 0 4px #000;
+		color : #222;
+		text-shadow: 1px 1px #fff;
+		width: 400px;
+	}
+}
+
+.login-form {
+
+	position: relative;
+	z-index:2;
+	box-shadow: 0 0 4px #000;
+
+	@extend .main-nav;
+
+	label {
+		padding-right: 4px;
+	}
+
+	.form-group::after {
+		//content:'\f111'; // petit rond à remplacer ?
+		font-family: icons;
+		font-size: .5em;
+		display: inline-block;
+		vertical-align: middle;
+		padding: 0 2px;
+	}
+
+	.login-submit {
+		&::after {
+			//content:'\f011';
+			font-family: icons;
+			display: inline-block;
+			vertical-align: middle;
+			padding-left: 4px;
+		}
+	}
+}

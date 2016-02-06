@@ -11,13 +11,13 @@
 		var defaults = {
 			title_class: 'block-title',
 			content_class: 'block-content'
-		}
+		};
 
 		var settings;
 
 		var methods = {
-	        init : function(options) {
-	        	settings = $.extend( {}, defaults, options );
+			init : function(options) {
+				settings = $.extend( {}, defaults, options );
 
 				self = this; //store original jQuery object
 				return self.each(function() {
@@ -43,45 +43,45 @@
 					});
 
 				});
-	        },
-	        open : function( arg ) { 
+			},
+			open : function( arg ) {
 
-	        	arg = (typeof(arg) === 'undefined') ? this : arg;
-	        	methods.toggle('open', arg);
+				arg = (typeof(arg) === 'undefined') ? this : arg;
+				methods.toggle('open', arg);
 
-	        },
-	        close : function( arg ) {
+			},
+			close : function( arg ) {
 
-	        	arg = (typeof(arg) === 'undefined') ? this : arg;
-	        	methods.toggle('close', arg);
+				arg = (typeof(arg) === 'undefined') ? this : arg;
+				methods.toggle('close', arg);
 
-	        },
-	        toggle : function (action, arg) {
+			},
+			toggle : function (action, arg) {
 
-	        	var block = jQuery(arg).closest('.foldable-triggered');
+				var block = jQuery(arg).closest('.foldable-triggered');
 
-	        	if(action === 'close') {
-	        		block.removeClass('open').addClass('closed');
-	        		block.find('.' + settings.content_class).hide();
-	        	}
-	        	else {
-	        		block.removeClass('closed').addClass('open');
-	        		block.find('.' + settings.content_class).show();
-	        	}
+				if(action === 'close') {
+					block.removeClass('open').addClass('closed');
+					block.find('.' + settings.content_class).hide();
+				}
+				else {
+					block.removeClass('closed').addClass('open');
+					block.find('.' + settings.content_class).show();
+				}
 
-	        }
-	    };
+			}
+		};
 
 		$.fn.foldable = function( args ) {
 
 			if ( methods[args] ) {
-	            return methods[ args ].apply( this, Array.prototype.slice.call( arguments, 1 ));
-	        } else if ( typeof args === 'object' || ! args ) {
-	            // Default to "init"
-	            return methods.init.apply( this, arguments );
-	        } else {
-	            $.error( 'Method ' +  args + ' does not exist on jQuery.foldable' );
-	        } 
+				return methods[ args ].apply( this, Array.prototype.slice.call( arguments, 1 ));
+			} else if ( typeof args === 'object' || ! args ) {
+				// Default to "init"
+				return methods.init.apply( this, arguments );
+			} else {
+				$.error( 'Method ' +  args + ' does not exist on jQuery.foldable' );
+			}
 			
 		};
 	}( jQuery ));
@@ -121,13 +121,10 @@
 				return ($this.data( type ) !== null );
 			}
 
-			// return value !== null ?
-			// 	$this.data( type ).indexOf(value) !== -1 :
-			// 	$this.data( type ) !== null;
 		});
 	};
 
-	})(jQuery); 
+	})(jQuery);
 	// FILTER BY DATA - END 
 	
-})()
+})();

@@ -6,17 +6,16 @@ PRIO 3 : lazy loading pour les images ==> en cours (marche pas ???)
 
 PRIO 3 : tris supplémentaires :
 - dans collection : par couleur, par extension (actuellement défaut), mettre des boutons (des checkboxes) ; à l'intérieur
-- dans une extension : par ordre alphabétique (actuellement défaut), par numéro, par couleur (puis par numéro)
+- dans une extension : par ordre alphabétique (actuellement défaut), par numéro
 - dans la recherche : par nom, par couleur, par extension (actuellement défaut)
 
-remplacer le polyfill
+remplacer le polyfill de number (pour l'instant pas possible, trop complexe ; probleme : il est buggé pour Firefox 30)
 
 extensions : intro avec logotype de l'extension (localisée si possible), et les raretés
 
 recherche possible par quantité ? très plus tard (need outil de recherche avancée)
 
-une image en fond double layer comme site Blizzard
-peut-être petites lampes vertes type années 30 sur les images
+une image en fond double layer comme site Blizzard, peut-être petites lampes vertes type années 30 sur les images
 
 Collection : afficher le nombre de cartes possédées dans une extension donnée (dans chaque groupe)
 
@@ -27,8 +26,6 @@ testé sous Ubuntu 13.04 Firefox 24, Windows XP Firefox 24 --> le pb vient de Fi
 
 gestion des cartes recto/verso
 
-static pour les images, virer sessions (comment ?)
-
 config : la langue de l'appli, et la langue des cartes
 langues : mettre les textes dans les fichiers de langue => en cours
 
@@ -38,13 +35,19 @@ clic sur image carte emmène vers page dédiée, avec capa en toute lettre + rul
 
 pb avec les images des terrains de base : voir où se situe le souci dans l'update ==> ce sont les variations, la récup des cartes voit le même numéro et écrase le fichier
 
-dans recherche : extension cliquable
+dans recherche : extension cliquable (aussi dans Collection)
+
+faire file_exists sur les symboles d'ext dans la liste des extensions pour éviter les 404
+
 
 
 
 
 -------------------------------------------------------------------------------
 
+DONE ===> afficher le numéro de la carte pour la recherche dans la page
+
+DONE ===> static pour les images, virer sessions (comment ?)
 
 DONE ===> faire page de création d'utilisateur (plus tard : inscription)
 

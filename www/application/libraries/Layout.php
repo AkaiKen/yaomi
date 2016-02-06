@@ -51,8 +51,6 @@ class Layout
 			: '';
 		}
 
-		// OLD
-		//return (file_exists(APPPATH.'views/' . $view_name .'.php')) ? $CI->load->view($view_name, $data, TRUE) : '';
 	}
 
 	function output_view( $content = array(), $layout_view = 'layout'){

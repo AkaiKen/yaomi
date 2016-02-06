@@ -18,7 +18,7 @@ class Settings extends MY_Controller {
 
     public function list_actions() {
     	$actions = array();
-    	$actions['title'] = lang('actions.title');
+    	$actions['title'] = lang('settings.actions_list.title');
 		$actions['content'] = $this->layout->load_view('settings/actions_list', array('is_admin' => $this->session->userdata('is_admin')));
 		$data_output['content'] = $this->layout->load_view('utils/group', $actions);
 		$this->layout->output_view($data_output);
@@ -27,6 +27,8 @@ class Settings extends MY_Controller {
     public function translate_cards() {
 
     	$cards_to_translate = $this->settings_m->list_non_translated_cards();
+
+    	//var_dump($cards_to_translate); 	
 
     	// if(empty($cards_to_translate)) {
     	// 	$translate = array();

@@ -2,8 +2,13 @@
 
 class Update_model extends CI_Model {
 
+	/**
+	 * note SQLite : si erreur d'insertion, unable to open database file, donner 777 sur le dossier parent, car
+	 * la modification de la base nécessite la création d'un fichier temporaire à côté
+	 * */
+
 	function insert_card($card_data) {
-		echo 'on insère dans cards';
+		echo 'on insere dans cards';
 		//var_dump($card_data);
 
 		$data = array(
@@ -83,27 +88,35 @@ class Update_model extends CI_Model {
 			$data['rulings'] = $card_data['rulings'];
 		}
 
+		var_dump('to insert', $data);
+
 		$this->db->set($data);
 		$this->db->update('mdm_cards');
+
 
 	}
 
 	function insert_card_set($card_id, $set_id, $card_data) {
-		echo 'on insère in cards_x_sets';
+		echo 'on insere in cards_x_sets';
 		//var_dump($card_data);
 
 		$data = array(
 			'fk_card' => $card_id,
 			'fk_set' => $set_id,
 			'card_number' => $card_data['card_number'],
-			//'card_internal_id' => $card_data['card_internal_id'],
+			'card_internal_id' => $card_data['card_internal_id'],
 			'rarity' => (isset($card_data['rarity'])) ? $card_data['rarity'] : NULL,
 			'variation' => (isset($card_data['variation']) && $card_data['variation'] !== '') ? $card_data['variation'] : NULL,
 			'watermark' => (isset($card_data['watermark'])) ? $card_data['watermark'] : NULL,
 			'artist' => (isset($card_data['artist'])) ? $card_data['artist'] : NULL,
 			'flavor_text' => (isset($card_data['flavor_text'])) ? $card_data['flavor_text'] : NULL,
 		);
-		$this->db->insert('mdm_cards_x_sets', $data);
+
+		//var_dump($data);
+		$result = $this->db->insert('mdm_cards_x_sets', $data);
+		//var_dump($result);
+		//echo $this->db->last_query();
+		//die();
 
 	}
 
@@ -147,10 +160,27 @@ class Update_model extends CI_Model {
 			$this->db->where('fk_card', $card_id);
 			$this->db->where('fk_set', $set_id);
 			$this->db->set($data);
-			$this->db->update('mdm_cards_x_sets');
+			$result = $this->db->update('mdm_cards_x_sets');
 		}
 
+		var_dump($result);
+
+		var_dump($data);
+
 		
+	}
+
+	function insert_set($set_data) {
+
+		$this->db->set($set_data);
+		
+		var_dump($set_data);
+
+		$result = $this->db->insert('mdm_sets');
+
+		var_dump($result);
+
+		echo $this->db->last_query();
 	}
 
 

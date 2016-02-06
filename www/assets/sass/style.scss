@@ -11,21 +11,32 @@ $bp-tiny: 300px;
   vertical-align: $alignment;
 }
 
-@import "colors";
-
-@import "normalize-h5bp";
+@import "partials/colors";
+@import "partials/mixins";
+@import "partials/normalize-h5bp";
 //@import "grids";
 
 $blueprint_grid_columns: 12;
 $blueprint-grid-margin: 2%;
 $blueprint_grid_width: 6.222%; //(100% - (($blueprint_grid_columns + 1) * $blueprint-grid-margin)) / $blueprint_grid_columns;
-@import "grid_blueprint";
+@import "partials/grid_blueprint";
 
-@import "layout";
-@import "typography";
-@import "helpers";
-@import "forms";
-@import "application";
+@import "partials/layout";
+@import "partials/typography";
+@import "partials/helpers";
+@import "partials/forms";
+@import "partials/application";
+
+@import "modules/header_footer";
+@import "modules/login";
+@import "modules/card";
+
+@import "pages/home";
+@import "pages/set";
+@import "pages/error";
 
 
-@import "print";
+
+
+
+@import "partials/print";

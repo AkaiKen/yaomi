@@ -45,7 +45,8 @@ class Settings_model extends CI_Model {
 
 		$exec = $this->db->get();
 
-		if($exec->num_rows() > 0) {
+		// if($exec->num_rows() > 0) {
+		if(count($exec->result()) > 0) {
 			return $exec->result();
 		}
 		return FALSE;
@@ -59,5 +60,4 @@ class Settings_model extends CI_Model {
 		$this->db->where('id', $id_card);
 		$this->db->update('mdm_cards');
 	}
-
 }

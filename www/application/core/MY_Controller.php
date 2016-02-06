@@ -5,7 +5,7 @@ class MY_Controller extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        ini_set('display_errors', 1);
+        //ini_set('display_errors', 1);
 
         $page = $this->uri->rsegment(1);
         $sub_page = $this->uri->rsegment(2);
@@ -24,11 +24,16 @@ class MY_Controller extends CI_Controller {
 
         // is the user logged?
         $is_logged = $this->session->userdata('is_logged');
+        
 
         // is the user on a public page?
         // if "no" and "no", we redirect them on the login page
-        $public_pages = array('login', 'about', 'credits', 'install', 'register');
- 		if(!$is_logged && !in_array($page, $public_pages)) {
+        //$public_pages = array('login', 'about', 'credits', 'install', 'register');
+
+        // is the user on a private page?
+        // if "no" and "yes", we redirect them on the login page
+        $private_pages = array('settings');
+ 		if(!$is_logged && in_array($page, $private_pages)) {
 			redirect('login');
             exit;
 		}
@@ -52,6 +57,14 @@ class MY_Controller extends CI_Controller {
                 'prev_url' => $prev_url
             )
         );
+
+
+        $this->is_logged = $is_logged;
+        $this->user = $this->session->userdata('user_id');
+
+        if(!isset($this->body_class)) {
+            $this->body_class = array();
+        }
     }
 
     function _display_error($message = "") {

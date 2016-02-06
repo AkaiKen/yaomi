@@ -16,7 +16,8 @@ class Login_model extends CI_Model {
 
     	$exec = $this->db->get();
 
-    	if($exec->num_rows() > 0) {
+    	//if($exec->num_rows() > 0) {
+        if(count($exec->result()) > 0) {
     		// yes!
     		$user = $exec->row();
             $this->session->set_userdata('user_id', $user->id);

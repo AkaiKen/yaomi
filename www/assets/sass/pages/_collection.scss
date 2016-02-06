@@ -1,0 +1,14 @@
+/*
+==COLLECTION
+*****************************/
+
+.page-collection {
+	.card-group .block-title::before {
+		content: '\f005';
+		font-family: icons;
+		display: inline-block;
+		vertical-align: top;
+		padding-right: 6px;
+		font-weight: normal;
+	}
+}
