@@ -102,6 +102,7 @@ class Card extends MY_Controller {
 				$intro['content'] = $this->layout->load_view('search_intro', $search_intro);
 				$intro['content'] .= $this->layout->load_view('utils/fold_buttons');
 				$intro['content'] .= $this->layout->load_view('filter/rarities_filter');
+				$intro['content'] .= $this->layout->load_view('filter/colors_filter');
 			}
 		}
 
