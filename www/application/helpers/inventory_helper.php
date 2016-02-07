@@ -35,14 +35,19 @@ function get_filter_string($filter_type, $filter_term) {
 
 function reajust_card_color($card) {
 
+	$classic_colors = get_classic_colors(TRUE);
+
 	// if the card is a classic, colorless artifact, we add 'C' for colorless
 	if($card->color === 'A') {
 		$card->color .= 'C';
 	}
 
-	// if the card color(s) don't contain WUBRG, nor C, we add 'O' for others (planes, schemes, racoons...)
-	//$classic_colors = array('W', 'U', 'B', 'R', 'G', 'C');
-	$classic_colors = get_classic_colors(TRUE);
+	// if the card is a (classic) land (Dryad Arbor, you're not concerned), we add 'C' for colorless
+	if($card->color === 'L') {
+		$card->color .= 'C';
+	}
+
+	// if the card colors don't contain WUBRG, nor C, we add 'O' for others (planes, schemes, raccoons...)	
 	$found = 0;
 	foreach($classic_colors as $color) {
 		if(strpos($card->color, $color) !== FALSE){
@@ -50,7 +55,7 @@ function reajust_card_color($card) {
 			break 1;
 		}
 	}
-	if($found === 0){
+	if($found === 0) {
 		$card->color .= 'O';
 	}
 	
