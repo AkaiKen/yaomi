@@ -332,7 +332,7 @@
 			var $t = jQuery(this),
 				$cards = $t.find('.card');
 
-			if($cards.not('.hidden').length) {
+			if($cards.not('.hidden, .color-hidden, .rarity-hidden').length) {
 				$t.show();
 			}
 			else {
